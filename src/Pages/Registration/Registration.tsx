@@ -2,8 +2,10 @@ import { useLottie } from "lottie-react";
 import { Helmet } from "react-helmet-async";
 import { StartFromTop } from "../../component/startFromTop";
 import RegAnim from "../../../public/Reg_Lottie.json";
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router";
+import { toast } from "sonner";
+import { sonarId } from "../../utils/functions";
 const Registration = () => {
   const options = {
     animationData: RegAnim,
@@ -23,12 +25,27 @@ const Registration = () => {
     setShowPasswordConfirm(!showPasswordConfirm);
   };
 
-  const handleAccept = () => {
-    setAccept(!accept);
+  const handleAccept = (event: ChangeEvent<HTMLInputElement>) => {
+    const data = event.target.checked;
+    setAccept(data);
   };
 
   const handleRegistration = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const Form = event.target as HTMLFormElement;
+    const name = Form.namee.value;
+    const email = Form.email.value;
+    const password = Form.password.value;
+    const confirmPassword = Form.confirmPassword.value;
+    if (password != confirmPassword) {
+      toast.error("Password and Confirm Password Doesn't Matched", {
+        id: sonarId,
+      });
+      return;
+    }
+
+    const formData = { name, email, password, confirmPassword };
+    console.log("Form Data: ", formData);
   };
 
   return (
@@ -43,35 +60,21 @@ const Registration = () => {
           <h1 className="text-3xl font-bold text-center">Registration now!</h1>
 
           <form onSubmit={handleRegistration}>
-            <div className="flex flex-col md:flex-row md:gap-10 w-ful">
-              <div className="form-control w-full md:w-[50%]">
-                <label className="label">
-                  <span className="label-text font-bold">First Name</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="First Name"
-                  className="input input-bordered"
-                  name="firstname"
-                  required
-                />
-              </div>
-              <div className="form-control w-full md:w-[50%]">
-                <label className="label">
-                  <span className="label-text font-bold">Last Name</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Last Name"
-                  className="input input-bordered"
-                  name="lastname"
-                  required
-                />
-              </div>
-            </div>
-            <div className="form-control">
+            <div className="form-control  ">
               <label className="label">
-                <span className="label-text font-bold">Email</span>
+                <span className="label-text font-bold">Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder=" Name"
+                className="input input-bordered"
+                name="namee"
+                required
+              />
+            </div>
+            <div className="form-control  my-4">
+              <label className="label">
+                <span className="label-text font-bold ">Email</span>
               </label>
               <input
                 type="email"
@@ -82,20 +85,7 @@ const Registration = () => {
               />
             </div>
 
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text font-bold">Phone Number</span>
-              </label>
-              <input
-                type="number"
-                placeholder="Phone Number"
-                className="input input-bordered"
-                name="phone"
-                required
-              />
-            </div>
-
-            <div className="form-control relative">
+            <div className="form-control relative  my-4">
               <label className="label font-bold">
                 <span className="label-text">Password</span>
               </label>
@@ -115,7 +105,7 @@ const Registration = () => {
               </div>
             </div>
 
-            <div className="form-control relative">
+            <div className="form-control relative  my-4">
               <label className="label font-bold">
                 <span className="label-text">Confirm Password</span>
               </label>
@@ -123,7 +113,7 @@ const Registration = () => {
                 type={showPasswordConfirm ? "text" : "password"}
                 placeholder="password"
                 className="input input-bordered"
-                name="password"
+                name="confirmPassword"
                 required
               />
 
@@ -135,9 +125,9 @@ const Registration = () => {
               </div>
             </div>
 
-            <p className="w-full mx-auto flex items-center">
+            <p className="w-full mx-auto flex items-center my-4">
               <input
-                onClick={handleAccept}
+                onChange={handleAccept}
                 className="ms-2"
                 type="checkbox"
                 name="accept"
