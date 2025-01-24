@@ -1,11 +1,11 @@
 import { useLottie } from "lottie-react";
 import { Helmet } from "react-helmet-async";
-import { StartFromTop } from "../../component/startFromTop";
+import { StartFromTop } from "../../component/hook/StartFromTop";
 import RegAnim from "../../../public/Reg_Lottie.json";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router";
 import { toast } from "sonner";
-import { sonarId } from "../../utils/functions";
+import { sonarId } from "../../utils/Fucntion/sonarId";
 import { useRegistrationMutation } from "../../Redux/api/features/auth/authApi";
 const Registration = () => {
   const [addRegister] = useRegistrationMutation();

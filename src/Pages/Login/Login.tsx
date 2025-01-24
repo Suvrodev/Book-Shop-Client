@@ -2,14 +2,14 @@ import { useLottie } from "lottie-react";
 import LoginAnim from "../../../public/Login_Lottie.json";
 import { Link, useLocation, useNavigate } from "react-router";
 import { FormEvent, useState } from "react";
-import { StartFromTop } from "../../component/startFromTop";
 import { Helmet } from "react-helmet-async";
 import { useLoginMutation } from "../../Redux/api/features/auth/authApi";
 import { toast } from "sonner";
-import { sonarId } from "../../utils/functions";
+import { sonarId } from "../../utils/Fucntion/sonarId";
 import { useAppDispatch } from "../../Redux/hooks";
 import { setUser } from "../../Redux/api/features/auth/authSlice";
-import { verifyToken } from "../../utils/verifyToken";
+import { verifyToken } from "../../utils/Fucntion/verifyToken";
+import { StartFromTop } from "../../component/hook/StartFromTop";
 const Login = () => {
   const dispatch = useAppDispatch();
   const [login] = useLoginMutation();

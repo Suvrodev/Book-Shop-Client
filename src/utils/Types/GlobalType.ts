@@ -1,6 +1,8 @@
 export type TUser = {
-  userId: string;
-  role: string;
-  exp: number;
+  name: string;
+  email: string;
+  role: "user" | "admin";
+  isBlocked: boolean;
   iat: number;
+  exp: number;
 };

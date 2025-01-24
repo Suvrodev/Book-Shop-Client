@@ -8,7 +8,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
 import { toast } from "sonner";
-import { sonarId } from "../../utils/functions";
+import { sonarId } from "../../utils/Fucntion/sonarId";
 import { logout, setUser } from "./features/auth/authSlice";
 
 const baseQuery = fetchBaseQuery({

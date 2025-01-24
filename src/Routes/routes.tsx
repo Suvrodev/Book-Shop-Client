@@ -8,6 +8,7 @@ import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 import TermsAndCondition from "../Pages/TermsAndCondition/TermsAndCondition";
 import AddBook from "../Pages/AddBook/AddBook";
+import ProtectedRoute from "../Layout/ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -36,7 +37,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "add-book",
-        element: <AddBook />,
+        element: (
+          <ProtectedRoute>
+            {" "}
+            <AddBook />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
