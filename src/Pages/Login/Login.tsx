@@ -4,7 +4,15 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { FormEvent, useState } from "react";
 import { StartFromTop } from "../../component/startFromTop";
 import { Helmet } from "react-helmet-async";
+import { useLoginMutation } from "../../Redux/api/features/auth/authApi";
+import { toast } from "sonner";
+import { sonarId } from "../../utils/functions";
+import { useAppDispatch } from "../../Redux/hooks";
+import { setUser } from "../../Redux/api/features/auth/authSlice";
+import { verifyToken } from "../../utils/verifyToken";
 const Login = () => {
+  const dispatch = useAppDispatch();
+  const [login] = useLoginMutation();
   const options = {
     animationData: LoginAnim,
     loop: true,
@@ -23,8 +31,24 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleLogin = (event: FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const Form = event.target as HTMLFormElement;
+    const email = Form.email.value;
+    const password = Form.password.value;
+    const formData = { email, password };
+    console.log("Form Data: ", formData);
+
+    toast.loading("Loginging", { id: sonarId });
+    const res = await login(formData).unwrap();
+    console.log("Res: ", res);
+    const token = res?.data?.token;
+    const user = verifyToken(token);
+    if (res?.success) {
+      toast.success("Login successfully", { id: sonarId });
+      dispatch(setUser({ user, token }));
+      navigate("/");
+    }
   };
 
   return (

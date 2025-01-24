@@ -6,7 +6,10 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router";
 import { toast } from "sonner";
 import { sonarId } from "../../utils/functions";
+import { useRegistrationMutation } from "../../Redux/api/features/auth/authApi";
 const Registration = () => {
+  const [addRegister] = useRegistrationMutation();
+
   const options = {
     animationData: RegAnim,
     loop: true,
@@ -30,7 +33,7 @@ const Registration = () => {
     setAccept(data);
   };
 
-  const handleRegistration = (event: FormEvent<HTMLFormElement>) => {
+  const handleRegistration = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const Form = event.target as HTMLFormElement;
     const name = Form.namee.value;
@@ -44,8 +47,14 @@ const Registration = () => {
       return;
     }
 
-    const formData = { name, email, password, confirmPassword };
+    const formData = { name, email, password };
     console.log("Form Data: ", formData);
+    toast.loading("Creating User", { id: sonarId });
+    const res = await addRegister(formData).unwrap();
+    console.log("Res: ", res);
+    if (res?.success) {
+      toast.success("Registration successfully", { id: sonarId });
+    }
   };
 
   return (
