@@ -1,9 +1,17 @@
 import { Outlet } from "react-router";
+import DesktopHeader from "../../Pages/SharedPage/Header/DesktopHeader/DesktopHeader";
+import MobileHeader from "../../Pages/SharedPage/Header/MobileHeader/MobileHeader";
 
 const MainLayout = () => {
   return (
     <div>
-      <h1>Main Layout</h1>
+      <div className="hidden md:block">
+        <DesktopHeader />
+      </div>
+      <div className=" md:hidden">
+        <MobileHeader />
+      </div>
+
       <Outlet />
     </div>
   );
