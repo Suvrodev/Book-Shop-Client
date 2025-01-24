@@ -1,6 +1,7 @@
 import { Outlet } from "react-router";
 import DesktopHeader from "../../Pages/SharedPage/Header/DesktopHeader/DesktopHeader";
 import MobileHeader from "../../Pages/SharedPage/Header/MobileHeader/MobileHeader";
+import Footer from "../../Pages/SharedPage/Footer/Footer";
 
 const MainLayout = () => {
   return (
@@ -13,6 +14,9 @@ const MainLayout = () => {
       </div>
 
       <Outlet />
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };

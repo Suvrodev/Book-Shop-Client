@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import logo from "../../../../assets/Logo/Logo.png";
 
 const DesktopHeader = () => {
@@ -36,7 +36,10 @@ const DesktopHeader = () => {
       </div>
 
       <div className="w-[25%]  flex justify-end items-center">
-        <button className=" btn btn-primary text-white ">Login</button>
+        <Link to={"/login"}>
+          {" "}
+          <button className=" btn btn-primary text-white ">Login</button>
+        </Link>
       </div>
     </div>
   );

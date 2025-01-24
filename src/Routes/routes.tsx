@@ -6,6 +6,7 @@ import ProductDetail from "../Pages/ProductDetail/ProductDetail";
 import AboutUS from "../Pages/AboutUS/AboutUS";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
+import TermsAndCondition from "../Pages/TermsAndCondition/TermsAndCondition";
 
 export const router = createBrowserRouter([
   {
@@ -41,5 +42,9 @@ export const router = createBrowserRouter([
   {
     path: "registration",
     element: <Registration />,
+  },
+  {
+    path: "terms-and-condition",
+    element: <TermsAndCondition />,
   },
 ]);
