@@ -10,6 +10,7 @@ import ProtectedRoute from "../Layout/ProtectedRoute";
 import AllBooks from "../Pages/AllBooks/AllBooks";
 import BookDetail from "../Pages/BookDetail/BookDetail";
 import MyCart from "../Pages/MyCart/MyCart";
+import UserProfile from "../Pages/UserProfile/UserProfile";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,15 @@ export const router = createBrowserRouter([
           <ProtectedRoute>
             {" "}
             <AddBook />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "user-profile",
+        element: (
+          <ProtectedRoute>
+            {" "}
+            <UserProfile />
           </ProtectedRoute>
         ),
       },

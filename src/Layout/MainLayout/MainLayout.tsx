@@ -13,7 +13,9 @@ const MainLayout = () => {
         <MobileHeader />
       </div>
 
-      <Outlet />
+      <div className="mx-0 md:mx-4">
+        <Outlet />
+      </div>
       <div>
         <Footer />
       </div>

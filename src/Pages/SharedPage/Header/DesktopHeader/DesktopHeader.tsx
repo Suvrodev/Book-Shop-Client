@@ -3,6 +3,7 @@ import logo from "../../../../assets/Logo/Logo.png";
 import { useAppSelector } from "../../../../Redux/hooks";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../../Redux/api/features/auth/authSlice";
+import DashboradButton from "./DashboradButton";
 
 const DesktopHeader = () => {
   const { token, user } = useAppSelector((state) => state.auth);
@@ -49,7 +50,7 @@ const DesktopHeader = () => {
       <div className="w-[25%]  flex justify-end items-center 0">
         {token ? (
           <div className=" flex items-center gap-x-3">
-            <h1> {user?.name}</h1>
+            <DashboradButton />
             <button
               className=" btn btn-warning text-white "
               onClick={() => dispatch(logout())}

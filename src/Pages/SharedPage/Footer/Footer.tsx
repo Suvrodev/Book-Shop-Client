@@ -1,10 +1,11 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import XIcon from "@mui/icons-material/X";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import logo from "../../../assets/Logo/Logo.png";
+import { useEffect, useState } from "react";
 
 const Footer = () => {
   const handleWhatsapp = () => {
@@ -23,8 +24,8 @@ const Footer = () => {
   };
 
   return (
-    <div className="  bg-[#0B1221] flex flex-col items-center text-white mt-10">
-      <footer className="footer p-10  rounded-md grid grid-cols-1 md:grid-cols-4 justify-evenly max-w-7xl mx-auto">
+    <div className=" bg-[#0B1221] flex flex-col items-center text-white mt-10">
+      <footer className="footer py-10 px-0  rounded-md grid grid-cols-1 md:grid-cols-4  max-w-7xl mx-auto">
         <aside>
           <img className="w-[146px]" src={logo} alt="" />
           <p>You Can Purchase All Type of Book From Our Shop</p>
