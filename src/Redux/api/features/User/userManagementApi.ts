@@ -1,17 +1,17 @@
-import { baseApi } from "../../api/baseApi";
+import { baseApi } from "../../baseApi";
 
 const userManagementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    addStudent: builder.mutation({
+    addBook: builder.mutation({
       query: (data) => {
         return {
-          url: "/users/create-student/",
+          url: "/products/",
           method: "POST",
           body: data,
         };
       },
     }),
-    getAllStudents: builder.query({
+    getAllBook: builder.query({
       query: () => {
         return {
           url: "/students",
@@ -22,5 +22,4 @@ const userManagementApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useAddStudentMutation, useGetAllStudentsQuery } =
-  userManagementApi;
+export const { useAddBookMutation, useGetAllBookQuery } = userManagementApi;

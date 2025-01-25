@@ -3,6 +3,8 @@ import "./AddBook.css";
 import { bookCategories } from "../../utils/Array/BookCategory";
 import { toast } from "sonner";
 import { sonarId } from "../../utils/Fucntion/sonarId";
+import { useAppSelector } from "../../Redux/hooks";
+import { useAddBookMutation } from "../../Redux/api/features/User/userManagementApi";
 
 // interface Product {
 //   title: string;
@@ -15,12 +17,14 @@ import { sonarId } from "../../utils/Fucntion/sonarId";
 // }
 
 const AddBook = () => {
-  //Category
+  const [addBook] = useAddBookMutation();
+  const { user } = useAppSelector((state) => state.auth);
+  //   console.log("User in Add Book: ", user);
   const [category, setCategory] = useState("");
   const handleCategory = (e: ChangeEvent<HTMLSelectElement>) => {
     const data = e.target.value;
     setCategory(data);
-    console.log("Data: ", data);
+    // console.log("Data: ", data);
   };
 
   //in Stock
@@ -30,7 +34,7 @@ const AddBook = () => {
     const data = event.target.checked;
     setInStock(data);
   };
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const Form = event.target as HTMLFormElement;
@@ -41,11 +45,10 @@ const AddBook = () => {
     const price = parseFloat(Form.price.value);
     const description = Form.description.value;
     const quantity = Form.quantity.value;
-
+    console.log("Category: ", category);
     if (!category) {
-      toast.error("Category field empty", { id: sonarId });
+      toast.error("Category field is empty", { id: sonarId });
     }
-    toast.success("Category field empty", { id: sonarId });
     const formData = {
       title,
       author,
@@ -56,8 +59,15 @@ const AddBook = () => {
       description,
       quantity,
       inStock,
+      refUser: user?.id,
     };
-    console.log("Form Data: ", formData);
+    // console.log("Form Data: ", formData);
+    toast.loading("Inserting Book", { id: sonarId });
+    const res = await addBook(formData).unwrap();
+    console.log("Res: ", res);
+    if (res?.success) {
+      toast.success(res?.message, { id: sonarId });
+    }
   };
 
   return (
@@ -92,7 +102,12 @@ const AddBook = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-x-4">
           <div className="form-group">
             <label htmlFor="price">Price:</label>
-            <input type="number" name="price" required />
+            <input
+              type="number"
+              name="price"
+              required
+              className="removeDefaultIcon"
+            />
           </div>
 
           <div className="form-group">
@@ -122,7 +137,12 @@ const AddBook = () => {
 
         <div className="form-group">
           <label htmlFor="quantity">Quantity:</label>
-          <input type="number" name="quantity" required />
+          <input
+            type="number"
+            name="quantity"
+            required
+            className="removeDefaultIcon"
+          />
         </div>
 
         <div className="flex items-center gap-x-2 mb-4">
