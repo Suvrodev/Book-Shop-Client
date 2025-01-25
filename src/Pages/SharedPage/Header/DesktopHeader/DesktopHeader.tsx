@@ -6,7 +6,7 @@ import { logout } from "../../../../Redux/api/features/auth/authSlice";
 import DashboradButton from "./DashboradButton";
 
 const DesktopHeader = () => {
-  const { token, user } = useAppSelector((state) => state.auth);
+  const { token } = useAppSelector((state) => state.auth);
   const dispatch = useDispatch();
   return (
     <div className="p-2  text-white  bg-[#0F172A] flex justify-between items-center px-10 relative z-10">
@@ -31,12 +31,6 @@ const DesktopHeader = () => {
           to="/all-books"
         >
           All Book
-        </NavLink>
-        <NavLink
-          className={({ isActive }) => (isActive ? "text-blue-500" : "acLk ")}
-          to="/mycart"
-        >
-          My Cart
         </NavLink>
 
         <NavLink

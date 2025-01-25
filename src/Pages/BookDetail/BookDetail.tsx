@@ -15,7 +15,7 @@ const BookDetail = () => {
   const { _id } = useParams(); // Correctly access _id
   //   console.log("The book ID is: ", _id);
 
-  const { data, isLoading } = useGetSingleBookQuery("67944632a24f5aa5f86d6a72");
+  const { data, isLoading } = useGetSingleBookQuery("6794f1eceb1591b49774d0fe");
   const book = data?.data;
   //   console.log("Book: ", book);
 

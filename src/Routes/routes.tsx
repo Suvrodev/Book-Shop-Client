@@ -12,6 +12,8 @@ import BookDetail from "../Pages/BookDetail/BookDetail";
 import MyCart from "../Pages/MyCart/MyCart";
 import UserProfile from "../Pages/UserProfile/UserProfile";
 import UserDashboard from "../Layout/UserDashboard/UserDashboard";
+import MyBook from "../Pages/MyBook/MyBook";
+import MyOrder from "../Pages/MyOrder/MyOrder";
 
 export const router = createBrowserRouter([
   {
@@ -30,10 +32,7 @@ export const router = createBrowserRouter([
         path: "all-books",
         element: <AllBooks />,
       },
-      {
-        path: "mycart",
-        element: <MyCart />,
-      },
+
       {
         path: "about-us",
         element: <AboutUS />,
@@ -65,6 +64,24 @@ export const router = createBrowserRouter([
   {
     path: "user-dashboard",
     element: <UserDashboard />,
+    children: [
+      {
+        path: "user-profile",
+        element: <UserProfile />,
+      },
+      {
+        path: "user-book",
+        element: <MyBook />,
+      },
+      {
+        path: "user-cart",
+        element: <MyCart />,
+      },
+      {
+        path: "user-order",
+        element: <MyOrder />,
+      },
+    ],
   },
   {
     path: "/login",

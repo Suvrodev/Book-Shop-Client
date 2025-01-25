@@ -1,11 +1,10 @@
-import { Link, useLocation } from "react-router";
+import { Link } from "react-router";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import XIcon from "@mui/icons-material/X";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import logo from "../../../assets/Logo/Logo.png";
-import { useEffect, useState } from "react";
 
 const Footer = () => {
   const handleWhatsapp = () => {
