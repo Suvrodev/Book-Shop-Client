@@ -27,6 +27,10 @@ const BookDetail = () => {
   }
 
   const handleAddCart = async () => {
+    if (!user) {
+      toast.error("You have to logged in first", { id: sonarId });
+      return;
+    }
     const insertingDataIntoCart = {
       bookId: "67944632a24f5aa5f86d6a72",
       userId: (user as TUser).id,
