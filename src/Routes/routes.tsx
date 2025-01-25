@@ -11,6 +11,7 @@ import AllBooks from "../Pages/AllBooks/AllBooks";
 import BookDetail from "../Pages/BookDetail/BookDetail";
 import MyCart from "../Pages/MyCart/MyCart";
 import UserProfile from "../Pages/UserProfile/UserProfile";
+import UserDashboard from "../Layout/UserDashboard/UserDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
         element: <BookDetail />,
       },
     ],
+  },
+  {
+    path: "user-dashboard",
+    element: <UserDashboard />,
   },
   {
     path: "/login",

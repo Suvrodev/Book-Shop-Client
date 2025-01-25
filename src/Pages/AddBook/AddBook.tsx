@@ -7,15 +7,8 @@ import { useAppSelector } from "../../Redux/hooks";
 import { useAddBookMutation } from "../../Redux/api/features/Book/bookManagementApi";
 import axios from "axios";
 import bookImage from "../../assets/Images/bookk.jpg";
-// interface Product {
-//   title: string;
-//   author: string;
-//   price: number;
-//   category: string;
-//   description: string;
-//   quantity: number;
-//   inStock: boolean;
-// }
+
+//  const IHT=import.meta.env.VITE_Image_Upload_Token
 
 const apiKey = "41f7b4c771a4156d5e8f59d93a4886f2";
 const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`;
