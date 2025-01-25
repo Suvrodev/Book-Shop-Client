@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import "./AddBook.css";
 import { bookCategories } from "../../utils/Array/BookCategory";
 import { toast } from "sonner";
@@ -15,6 +15,7 @@ const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`;
 
 const AddBook = () => {
   const [addBook] = useAddBookMutation();
+  const imageRef = useRef<HTMLInputElement | null>(null);
   const { user } = useAppSelector((state) => state.auth);
   //   console.log("User in Add Book: ", user);
   const [category, setCategory] = useState("");
@@ -32,6 +33,14 @@ const AddBook = () => {
   // };
 
   ///Handle Image
+
+  const uploadImage = () => {
+    console.log("Upload Image");
+    if (imageRef.current) {
+      imageRef.current.click();
+    }
+  };
+
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -126,15 +135,19 @@ const AddBook = () => {
             src={previewImage}
             alt="Preview"
             className="w-48 h-48 object-cover rounded-lg shadow"
+            onClick={() => uploadImage()}
           />
         ) : (
-          <div>
+          <div className="flex flex-col items-center">
             <img
               src={bookImage}
               alt=""
               className="w-48 h-48 object-cover rounded-lg shadow"
+              onClick={() => uploadImage()}
             />
-            <p className="text-gray-500 text-center">No image selected</p>
+            <p className="text-gray-500 text-center">
+              No image selected. Press on Image to Select Image
+            </p>
           </div>
         )}
       </div>
@@ -195,9 +208,10 @@ const AddBook = () => {
           </div>
         </div>
 
-        <div className="form-group">
+        <div className="form-group hidden">
           <label htmlFor="quantity">Image:</label>
           <input
+            ref={imageRef}
             type="file"
             name="image"
             accept="image/*"
