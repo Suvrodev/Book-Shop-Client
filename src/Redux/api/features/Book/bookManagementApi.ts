@@ -14,7 +14,15 @@ const userManagementApi = baseApi.injectEndpoints({
     getAllBook: builder.query({
       query: () => {
         return {
-          url: "/students",
+          url: "/products",
+          method: "GET",
+        };
+      },
+    }),
+    getSingleBook: builder.query({
+      query: (id) => {
+        return {
+          url: `/products/${id}`,
           method: "GET",
         };
       },
@@ -22,4 +30,5 @@ const userManagementApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useAddBookMutation, useGetAllBookQuery } = userManagementApi;
+export const { useAddBookMutation, useGetAllBookQuery, useGetSingleBookQuery } =
+  userManagementApi;

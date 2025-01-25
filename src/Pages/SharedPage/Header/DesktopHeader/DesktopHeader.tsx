@@ -27,6 +27,12 @@ const DesktopHeader = () => {
         </NavLink>
         <NavLink
           className={({ isActive }) => (isActive ? "text-blue-500" : "acLk ")}
+          to="/all-books"
+        >
+          All Book
+        </NavLink>
+        <NavLink
+          className={({ isActive }) => (isActive ? "text-blue-500" : "acLk ")}
           to="/product-detail"
         >
           Product Detail

@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import App from "../App";
 import Home from "../Pages/Home/Home";
-import AllProducts from "../Pages/AllProducts/AllProducts";
 import ProductDetail from "../Pages/ProductDetail/ProductDetail";
 import AboutUS from "../Pages/AboutUS/AboutUS";
 import Login from "../Pages/Login/Login";
@@ -9,6 +8,8 @@ import Registration from "../Pages/Registration/Registration";
 import TermsAndCondition from "../Pages/TermsAndCondition/TermsAndCondition";
 import AddBook from "../Pages/AddBook/AddBook";
 import ProtectedRoute from "../Layout/ProtectedRoute";
+import AllBooks from "../Pages/AllBooks/AllBooks";
+import BookDetail from "../Pages/BookDetail/BookDetail";
 
 export const router = createBrowserRouter([
   {
@@ -24,8 +25,8 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "all-products",
-        element: <AllProducts />,
+        path: "all-books",
+        element: <AllBooks />,
       },
       {
         path: "product-detail",
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
             <AddBook />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "book-detail/:_id",
+        element: <BookDetail />,
       },
     ],
   },

@@ -3,8 +3,9 @@ import { useState } from "react";
 import logo from "../../../../assets/Logo/Logo.png";
 import MobileHeaderOption from "./MobileHeaderOption/MobileHeaderOption";
 const MobileHeader = () => {
-  const [isOpen, setIsOpen] = useState(false);
 
+  
+  const [isOpen, setIsOpen] = useState(false);
   const handleClick = () => {
     setIsOpen(!isOpen);
   };

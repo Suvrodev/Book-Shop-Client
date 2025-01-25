@@ -8,7 +8,7 @@ interface IProps {
 const ProtectedRoute = ({ children }: IProps) => {
   const { token } = useAppSelector((state) => state.auth);
 
-  //   console.log("Token in protected Route: ", token);
+  //   console.log("To--*/ken in protected Route: ", token);
 
   if (!token) {
     return <Navigate to={"/login"} replace={true}></Navigate>;
