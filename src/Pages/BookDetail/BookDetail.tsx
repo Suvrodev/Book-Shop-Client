@@ -11,7 +11,6 @@ const BookDetail = () => {
   const [addCart] = useAddCartMutation();
 
   const { user } = useAppSelector((state) => state.auth);
-  //   console.log("FUcking USer: ", user as TUser);
 
   const { _id } = useParams(); // Correctly access _id
   //   console.log("The book ID is: ", _id);

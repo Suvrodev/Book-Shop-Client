@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import App from "../App";
 import Home from "../Pages/Home/Home";
-import ProductDetail from "../Pages/ProductDetail/ProductDetail";
 import AboutUS from "../Pages/AboutUS/AboutUS";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
@@ -10,6 +9,7 @@ import AddBook from "../Pages/AddBook/AddBook";
 import ProtectedRoute from "../Layout/ProtectedRoute";
 import AllBooks from "../Pages/AllBooks/AllBooks";
 import BookDetail from "../Pages/BookDetail/BookDetail";
+import MyCart from "../Pages/MyCart/MyCart";
 
 export const router = createBrowserRouter([
   {
@@ -29,8 +29,8 @@ export const router = createBrowserRouter([
         element: <AllBooks />,
       },
       {
-        path: "product-detail",
-        element: <ProductDetail />,
+        path: "mycart",
+        element: <MyCart />,
       },
       {
         path: "about-us",

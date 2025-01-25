@@ -12,10 +12,11 @@ const cartManagementApi = baseApi.injectEndpoints({
         };
       },
     }),
-    getAllCart: builder.query({
-      query: () => {
+    getMyCart: builder.query({
+      query: (id: string) => {
+        console.log("Come id: ", id);
         return {
-          url: "/cart",
+          url: `/cart/${id}`,
           method: "GET",
         };
       },
@@ -31,5 +32,5 @@ const cartManagementApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useAddCartMutation, useGetAllCartQuery, useDeleteCartMutation } =
+export const { useAddCartMutation, useGetMyCartQuery, useDeleteCartMutation } =
   cartManagementApi;
