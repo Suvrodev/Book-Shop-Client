@@ -1,20 +1,44 @@
 import { useParams } from "react-router";
 import { useGetSingleBookQuery } from "../../Redux/api/features/Book/bookManagementApi";
 import LoadingPage from "../../component/LoadingPage/LoadingPage";
+import { useAddCartMutation } from "../../Redux/api/features/Cart/cartManagementApi";
+import { toast } from "sonner";
+import { useAppSelector } from "../../Redux/hooks";
+import { sonarId } from "../../utils/Fucntion/sonarId";
+import { TUser } from "../../utils/Types/GlobalType";
 
 const BookDetail = () => {
+  const [addCart] = useAddCartMutation();
+
+  const { user } = useAppSelector((state) => state.auth);
+  //   console.log("FUcking USer: ", user as TUser);
+
   const { _id } = useParams(); // Correctly access _id
-  console.log("The book ID is: ", _id);
+  //   console.log("The book ID is: ", _id);
 
   const { data, isLoading } = useGetSingleBookQuery("67944632a24f5aa5f86d6a72");
-  const book = data.data;
-  console.log("Book: ", book);
+  const book = data?.data;
+  //   console.log("Book: ", book);
 
   const bookImage =
     "https://www.wiley.com/storefront-pdp-assets/_next/image?url=https%3A%2F%2Fmedia.wiley.com%2Fjournal%2F21983844-cover.jpg&w=384&q=75";
   if (isLoading) {
     return <LoadingPage />;
   }
+
+  const handleAddCart = async () => {
+    const insertingDataIntoCart = {
+      bookId: "67944632a24f5aa5f86d6a72",
+      userId: (user as TUser).id,
+    };
+    console.log("Inserting data: ", insertingDataIntoCart);
+    toast.loading("Inserting Cart", { id: sonarId });
+
+    const res = await addCart(insertingDataIntoCart).unwrap();
+    if (res.success) {
+      toast.success(res?.message, { id: sonarId });
+    }
+  };
   return (
     <div>
       <h1>id: {_id} </h1>
@@ -69,7 +93,7 @@ const BookDetail = () => {
                   book?.inStock ? "" : "btn-disabled"
                 }`}
                 disabled={!book?.inStock}
-                onClick={() => alert("Buy functionality coming soon!")}
+                onClick={() => handleAddCart()}
               >
                 {book?.inStock ? "Buy Now" : "Out of Stock"}
               </button>
