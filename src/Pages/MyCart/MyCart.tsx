@@ -30,7 +30,7 @@ const MyCart = () => {
               {/* Cart Item Image */}
               <div className="w-32 h-48">
                 <img
-                  src="https://via.placeholder.com/200x300" // Replace with book image URL
+                  src={cartItem?.bookId?.imageUrl} // Replace with book image URL
                   alt={cartItem?.bookId?.title}
                   className="w-full h-full object-cover rounded-md"
                 />
@@ -38,18 +38,40 @@ const MyCart = () => {
 
               {/* Cart Item Details */}
               <div className="flex-1">
-                <h2 className="text-xl font-semibold text-gray-800">
-                  {cartItem.title}
+                <h2 className="text-xl  text-white font-bold">
+                  {cartItem.bookId?.title}
                 </h2>
-                <p className="text-gray-600 text-lg">
+                <p className="text-lg text-white italic">
                   by {cartItem?.bookId?.author}
                 </p>
-                <p className="text-gray-500 text-sm">
-                  {cartItem?.bookId?.category}
-                </p>
-                <p className="text-green-500 text-lg font-bold">
-                  ${cartItem?.bookId?.price}
-                </p>
+                <div className="flex gap-2 items-center">
+                  <p className="font-bold">Category</p>
+                  <p className="text-yellow-500 text-sm font-bold">
+                    {cartItem?.bookId?.category}
+                  </p>
+                </div>
+
+                <div className="flex gap-2 items-center">
+                  <p className="font-bold">Model</p>
+                  <p className="text-green-500 text-lg font-bold">
+                    ${cartItem?.bookId?.model}
+                  </p>
+                </div>
+                <div className="flex gap-2 items-center">
+                  <p className="font-bold">Price</p>
+                  <p className="text-orange-500 text-lg font-bold">
+                    ${cartItem?.bookId?.price}
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <button className="btn btn-sm btn-success text-white">
+                    Confirm Order{" "}
+                  </button>
+                  <button className="btn btn-sm btn-error text-white">
+                    Delete from Cart
+                  </button>
+                </div>
               </div>
             </div>
           ))}
