@@ -34,6 +34,16 @@ const userManagementApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["book"],
+    }),
+    deleteBook: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/products/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["book"],
     }),
   }),
 });
@@ -43,4 +53,5 @@ export const {
   useGetAllBookQuery,
   useGetSingleBookQuery,
   useGetOwnBookQuery,
+  useDeleteBookMutation,
 } = userManagementApi;

@@ -1,14 +1,29 @@
 import LoadingPage from "../../component/LoadingPage/LoadingPage";
-import { useGetOwnBookQuery } from "../../Redux/api/features/Book/bookManagementApi";
+import {
+  useDeleteBookMutation,
+  useGetOwnBookQuery,
+} from "../../Redux/api/features/Book/bookManagementApi";
 import { useAppSelector } from "../../Redux/hooks";
 import UpdateIcon from "@mui/icons-material/Update";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { toast } from "sonner";
+import { sonarId } from "../../utils/Fucntion/sonarId";
 const MyBook = () => {
+  const [deleteBook] = useDeleteBookMutation();
   const { user } = useAppSelector((state) => state.auth);
   const { data, isLoading } = useGetOwnBookQuery(user?.id);
   console.log("User From My Book: ", user);
   const books = data?.data;
   console.log("Books: ", books);
+
+  const handelDeleteBook = async (id: string) => {
+    toast.loading("Deleting Book", { id: sonarId });
+    const res = await deleteBook(id).unwrap();
+    console.log("Res: ", res);
+    if (res?.status) {
+      toast.success("Book deleted successfully", { id: sonarId });
+    }
+  };
   if (isLoading) {
     return <LoadingPage />;
   }
@@ -63,7 +78,10 @@ const MyBook = () => {
                     </td>
                     <td>
                       {" "}
-                      <button className="btn btn-error text-white">
+                      <button
+                        className="btn btn-error text-white"
+                        onClick={() => handelDeleteBook(data?._id)}
+                      >
                         <DeleteIcon />
                       </button>
                     </td>
