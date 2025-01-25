@@ -27,8 +27,20 @@ const userManagementApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getOwnBook: builder.query({
+      query: (id) => {
+        return {
+          url: `/products/ownbook/${id}`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
-export const { useAddBookMutation, useGetAllBookQuery, useGetSingleBookQuery } =
-  userManagementApi;
+export const {
+  useAddBookMutation,
+  useGetAllBookQuery,
+  useGetSingleBookQuery,
+  useGetOwnBookQuery,
+} = userManagementApi;
