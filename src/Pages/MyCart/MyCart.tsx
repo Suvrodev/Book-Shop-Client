@@ -22,7 +22,7 @@ const MyCart = () => {
         </div>
       ) : (
         <div className="space-y-6 text-white">
-          {carts.map((cartItem: any, idx: number) => (
+          {carts?.map((cartItem: any, idx: number) => (
             <div
               key={idx}
               className="bg-blue-500 text-white p-6 rounded-lg shadow-lg flex items-center space-x-6"

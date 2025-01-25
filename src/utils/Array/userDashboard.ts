@@ -8,6 +8,10 @@ export const userDashboards = [
     path: "/user-dashboard/user-profile",
   },
   {
+    text: "Add Book",
+    path: "/user-dashboard/user-add-book",
+  },
+  {
     text: "My Book",
     path: "/user-dashboard/user-book",
   },

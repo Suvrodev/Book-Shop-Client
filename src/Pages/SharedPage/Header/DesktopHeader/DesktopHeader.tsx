@@ -20,12 +20,7 @@ const DesktopHeader = () => {
         >
           Home
         </NavLink>
-        <NavLink
-          className={({ isActive }) => (isActive ? "text-blue-500" : "acLk ")}
-          to="/add-book"
-        >
-          Add Book
-        </NavLink>
+
         <NavLink
           className={({ isActive }) => (isActive ? "text-blue-500" : "acLk ")}
           to="/all-books"

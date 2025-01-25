@@ -37,15 +37,7 @@ export const router = createBrowserRouter([
         path: "about-us",
         element: <AboutUS />,
       },
-      {
-        path: "add-book",
-        element: (
-          <ProtectedRoute>
-            {" "}
-            <AddBook />
-          </ProtectedRoute>
-        ),
-      },
+
       {
         path: "user-profile",
         element: (
@@ -63,11 +55,19 @@ export const router = createBrowserRouter([
   },
   {
     path: "user-dashboard",
-    element: <UserDashboard />,
+    element: (
+      <ProtectedRoute>
+        <UserDashboard />{" "}
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "user-profile",
         element: <UserProfile />,
+      },
+      {
+        path: "user-add-book",
+        element: <AddBook />,
       },
       {
         path: "user-book",

@@ -3,8 +3,11 @@ import "./UserDashboard.css";
 import { Link, Outlet, useLocation } from "react-router";
 import { userDashboards } from "../../utils/Array/userDashboard";
 import WestIcon from "@mui/icons-material/West";
+import { useAppDispatch } from "../../Redux/hooks";
+import { logout } from "../../Redux/api/features/auth/authSlice";
 
 const UserDashboard = () => {
+  const dispatch = useAppDispatch();
   const location = useLocation()?.pathname;
   console.log("Location: ", location);
   return (
@@ -51,7 +54,7 @@ const UserDashboard = () => {
               <h1 className="text-xl font-bold">User Dashboard</h1>
             </div>
 
-            <div className=" flex flex-col gap-2 my-4">
+            <div className=" flex flex-col ic gap-2 my-4">
               {userDashboards.map((data) => (
                 <Link
                   key={data?.path}
@@ -64,6 +67,14 @@ const UserDashboard = () => {
                   {data?.text}{" "}
                 </Link>
               ))}
+              <div>
+                <button
+                  className="btn btn-error text-white relative left-4"
+                  onClick={() => dispatch(logout())}
+                >
+                  Logout
+                </button>
+              </div>
             </div>
           </ul>
         </div>
