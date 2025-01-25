@@ -20,14 +20,17 @@ const cartManagementApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["cart"],
     }),
     deleteCart: builder.mutation({
       query: (id) => {
+        console.log("Come cart id for delete: ", id);
         return {
           url: `/cart/${id}`,
           method: "DELETE",
         };
       },
+      invalidatesTags: ["cart"],
     }),
   }),
 });

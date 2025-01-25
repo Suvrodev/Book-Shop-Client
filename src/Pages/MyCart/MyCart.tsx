@@ -1,13 +1,29 @@
+import { toast } from "sonner";
 import LoadingPage from "../../component/LoadingPage/LoadingPage";
-import { useGetMyCartQuery } from "../../Redux/api/features/Cart/cartManagementApi";
+import {
+  useDeleteCartMutation,
+  useGetMyCartQuery,
+} from "../../Redux/api/features/Cart/cartManagementApi";
 import { useAppSelector } from "../../Redux/hooks";
 import { TUser } from "../../utils/Types/GlobalType";
+import { sonarId } from "../../utils/Fucntion/sonarId";
 
 const MyCart = () => {
   const { user } = useAppSelector((state) => state.auth);
+  const [deleteCart] = useDeleteCartMutation();
   const { data, isLoading } = useGetMyCartQuery((user as TUser)?.id);
   const carts = data?.data;
   console.log("Carts: ", carts);
+
+  const handleDelete = async (id: string) => {
+    toast.loading("Deleting", { id: sonarId });
+    const res = await deleteCart(id).unwrap();
+    console.log("Res: ", res);
+    if (res?.status) {
+      toast.success("Cart Deleted Successfully", { id: sonarId });
+    }
+  };
+
   if (isLoading) {
     return <LoadingPage />;
   }
@@ -22,6 +38,7 @@ const MyCart = () => {
         </div>
       ) : (
         <div className="space-y-6 text-white">
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           {carts?.map((cartItem: any, idx: number) => (
             <div
               key={idx}
@@ -68,7 +85,10 @@ const MyCart = () => {
                   <button className="btn btn-sm btn-success text-white">
                     Confirm Order{" "}
                   </button>
-                  <button className="btn btn-sm btn-error text-white">
+                  <button
+                    className="btn btn-sm btn-error text-white"
+                    onClick={() => handleDelete(cartItem?._id)}
+                  >
                     Delete from Cart
                   </button>
                 </div>
