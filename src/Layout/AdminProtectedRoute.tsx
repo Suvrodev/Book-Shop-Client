@@ -14,7 +14,7 @@ const AdminProtectedRoute = ({ children }: IProps) => {
   if (token) {
     user = verifyToken(token);
   }
-  console.log("Token User: ", user);
+  //   console.log("Token User: ", user);
 
   if (!token) {
     return <Navigate to={"/login"} replace={true}></Navigate>;
