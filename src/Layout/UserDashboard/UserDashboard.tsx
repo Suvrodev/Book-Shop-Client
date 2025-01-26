@@ -9,7 +9,7 @@ import { logout } from "../../Redux/api/features/auth/authSlice";
 const UserDashboard = () => {
   const dispatch = useAppDispatch();
   const location = useLocation()?.pathname;
-  console.log("Location: ", location);
+  //   console.log("Location: ", location);
   return (
     <div>
       {/* Dashboard Header */}

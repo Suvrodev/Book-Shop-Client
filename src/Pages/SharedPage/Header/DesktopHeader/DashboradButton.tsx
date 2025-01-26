@@ -1,6 +1,11 @@
 import { Link } from "react-router";
+import { useAppSelector } from "../../../../Redux/hooks";
 
 const DashboradButton = () => {
+  const { user } = useAppSelector((state) => state.auth);
+  console.log("User: ", user);
+  const role = user?.role;
+  console.log("Role: ", role);
   return (
     <div>
       <div className="dropdown ">
@@ -16,7 +21,7 @@ const DashboradButton = () => {
           className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
         >
           <li>
-            <Link to={"/user-dashboard"}>Profile</Link>
+            <Link to={`/${role}-dashboard`}>Profile</Link>
           </li>
         </ul>
       </div>

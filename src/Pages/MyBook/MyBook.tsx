@@ -4,17 +4,18 @@ import {
   useGetOwnBookQuery,
 } from "../../Redux/api/features/Book/bookManagementApi";
 import { useAppSelector } from "../../Redux/hooks";
-import UpdateIcon from "@mui/icons-material/Update";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { toast } from "sonner";
 import { sonarId } from "../../utils/Fucntion/sonarId";
+import UpdateBook from "../UpdateBook/UpdateBook";
+import { TBook } from "../../utils/Types/GlobalType";
 const MyBook = () => {
   const [deleteBook] = useDeleteBookMutation();
   const { user } = useAppSelector((state) => state.auth);
   const { data, isLoading } = useGetOwnBookQuery(user?.id);
-  console.log("User From My Book: ", user);
+  // console.log("User From My Book: ", user);
   const books = data?.data;
-  console.log("Books: ", books);
+  // console.log("Books: ", books);
 
   const handelDeleteBook = async (id: string) => {
     toast.loading("Deleting Book", { id: sonarId });
@@ -50,44 +51,40 @@ const MyBook = () => {
               </tr>
             </thead>
             <tbody>
-              {
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                books?.map((data: any, idx: number) => (
-                  <tr key={idx}>
-                    <th>
-                      {" "}
-                      <img
-                        src={data?.imageUrl}
-                        alt=""
-                        className="w-[65px] h-[40px]"
-                      />{" "}
-                    </th>
-                    <td>{data?.title}</td>
-                    <td>{data?.brand}</td>
-                    <td>{data?.author}</td>
-                    <td>{data?.category}</td>
-                    <td>{data?.model}</td>
-                    <td>{data?.price}</td>
-                    <td>{data?.quantity}</td>
-                    <td>{data?.inStock ? "Yes" : "No"}</td>
-                    <td>
-                      <button className="btn btn-sm btn-success text-white">
-                        {" "}
-                        <UpdateIcon />{" "}
-                      </button>
-                    </td>
-                    <td>
-                      {" "}
-                      <button
-                        className="btn btn-error text-white"
-                        onClick={() => handelDeleteBook(data?._id)}
-                      >
-                        <DeleteIcon />
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              }
+              {books?.map((data: TBook, idx: number) => (
+                <tr key={idx}>
+                  <th>
+                    {" "}
+                    <img
+                      src={data?.imageUrl}
+                      alt=""
+                      className="w-[65px] h-[40px]"
+                    />{" "}
+                  </th>
+                  <td>{data?.title}</td>
+                  <td>{data?.brand}</td>
+                  <td>{data?.author}</td>
+                  <td>{data?.category}</td>
+                  <td>{data?.model}</td>
+                  <td>{data?.price}</td>
+                  <td>{data?.quantity}</td>
+                  <td>{data?.inStock ? "Yes" : "No"}</td>
+                  <td>
+                    <button className="btn btn-sm btn-success text-white">
+                      <UpdateBook bookInfo={data} />
+                    </button>
+                  </td>
+                  <td>
+                    {" "}
+                    <button
+                      className="btn btn-error text-white"
+                      onClick={() => handelDeleteBook(data?._id)}
+                    >
+                      <DeleteIcon />
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

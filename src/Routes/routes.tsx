@@ -14,6 +14,8 @@ import UserProfile from "../Pages/UserProfile/UserProfile";
 import UserDashboard from "../Layout/UserDashboard/UserDashboard";
 import MyBook from "../Pages/MyBook/MyBook";
 import MyOrder from "../Pages/MyOrder/MyOrder";
+import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
+import AdminProtectedRoute from "../Layout/AdminProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +61,36 @@ export const router = createBrowserRouter([
       <ProtectedRoute>
         <UserDashboard />{" "}
       </ProtectedRoute>
+    ),
+    children: [
+      {
+        path: "user-profile",
+        element: <UserProfile />,
+      },
+      {
+        path: "user-add-book",
+        element: <AddBook />,
+      },
+      {
+        path: "user-book",
+        element: <MyBook />,
+      },
+      {
+        path: "user-cart",
+        element: <MyCart />,
+      },
+      {
+        path: "user-order",
+        element: <MyOrder />,
+      },
+    ],
+  },
+  {
+    path: "admin-dashboard",
+    element: (
+      <AdminProtectedRoute>
+        <AdminDashboard />{" "}
+      </AdminProtectedRoute>
     ),
     children: [
       {
