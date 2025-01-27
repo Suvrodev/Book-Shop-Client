@@ -19,6 +19,8 @@ import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
 import UserManagement from "../Pages/AdminPages/UserManagement/UserManagement";
 import CreateAbout from "../Pages/AdminPages/CreateAbout/CreateAbout";
 import OrderManagement from "../Pages/AdminPages/OrderManagement/OrderManagement";
+import PaymentSuccessfull from "../Pages/SharedPage/Payment/PaymentSuccessfull";
+import PaymentUnSuccessfull from "../Pages/SharedPage/Payment/PaymentUnSuccessfull";
 
 export const router = createBrowserRouter([
   {
@@ -126,5 +128,13 @@ export const router = createBrowserRouter([
   {
     path: "terms-and-condition",
     element: <TermsAndCondition />,
+  },
+  {
+    path: "success-pay/:transactionId",
+    element: <PaymentSuccessfull />,
+  },
+  {
+    path: "unsuccess-pay/:transactionId",
+    element: <PaymentUnSuccessfull />,
   },
 ]);

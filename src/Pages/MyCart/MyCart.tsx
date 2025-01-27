@@ -8,11 +8,13 @@ import { useAppSelector } from "../../Redux/hooks";
 import { TUser } from "../../utils/Types/GlobalType";
 import { sonarId } from "../../utils/Fucntion/sonarId";
 import { useTitle } from "../../component/hook/useTitle";
+import { useInitialPayMutation } from "../../Redux/api/features/Payment/paymenManagementApi";
 
 const MyCart = () => {
   useTitle("My Cart");
   const { user } = useAppSelector((state) => state.auth);
   const [deleteCart] = useDeleteCartMutation();
+  const [initialPayment] = useInitialPayMutation();
   const { data, isLoading } = useGetMyCartQuery((user as TUser)?._id);
   const carts = data?.data;
   console.log("Carts: ", carts);
@@ -23,6 +25,26 @@ const MyCart = () => {
     console.log("Res: ", res);
     if (res?.status) {
       toast.success("Cart Deleted Successfully", { id: sonarId });
+    }
+  };
+
+  ///Confirm Order
+  const handleConfirmOrder = async (
+    cartId: string,
+    productId: string,
+    price: string
+  ) => {
+    console.log("Cart id: ", cartId);
+    console.log("User id: ", user?._id);
+    console.log("Product id:", productId);
+    console.log("Price:", price);
+
+    const orderData = { cartId, userId: user?._id, productId, price };
+    const res = await initialPayment(orderData).unwrap();
+    console.log("Res: ", res);
+    if (res?.url) {
+      console.log("-----------------", res?.url);
+      window.location.replace(res?.url);
     }
   };
 
@@ -84,7 +106,16 @@ const MyCart = () => {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <button className="btn btn-sm btn-success text-white">
+                  <button
+                    className="btn btn-sm btn-success text-white"
+                    onClick={() =>
+                      handleConfirmOrder(
+                        cartItem._id,
+                        cartItem?.bookId?._id,
+                        cartItem?.bookId?.price
+                      )
+                    }
+                  >
                     Confirm Order{" "}
                   </button>
                   <button
