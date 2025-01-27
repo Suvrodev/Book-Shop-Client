@@ -37,6 +37,23 @@ const userManagementApi = baseApi.injectEndpoints({
       },
       providesTags: ["book"],
     }),
+    getBookImages: builder.query({
+      query: () => {
+        return {
+          url: `/products/images/book`,
+          method: "GET",
+        };
+      },
+    }),
+    getHomeBook: builder.query({
+      query: () => {
+        return {
+          url: `/products/images/book/home`,
+          method: "GET",
+        };
+      },
+      providesTags: ["book"],
+    }),
     deleteBook: builder.mutation({
       query: (id) => {
         return {
@@ -66,4 +83,6 @@ export const {
   useGetOwnBookQuery,
   useDeleteBookMutation,
   useUpdateBookMutation,
+  useGetBookImagesQuery,
+  useGetHomeBookQuery,
 } = userManagementApi;

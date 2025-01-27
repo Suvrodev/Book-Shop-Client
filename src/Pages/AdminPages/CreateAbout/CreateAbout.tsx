@@ -18,7 +18,7 @@ const CreateAbout = () => {
   const editor = useRef(null);
   const [content, setContent] = useState(aboutData?.data);
   const handleSave = async () => {
-    console.log("Content: ", content);
+    // console.log("Content: ", content);
     toast.loading("Updating about", { id: sonarId });
     const updateData = { data: content };
     const res = await updateAbout({ id: aboutData?._id, updateData }).unwrap();

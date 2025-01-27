@@ -1,12 +1,13 @@
 import Banner from "../SharedPage/Banner/Banner";
+import ImageGallery from "./ImageGallery/ImageGallery";
 import Testimonial from "./Testimonial/Testimonial";
 
 const Home = () => {
   return (
     <div>
-      <h1>This is Home</h1>
-      <div className="max-w-7xl mx-auto">
+      <div className="">
         <Banner />
+        <ImageGallery />
         <Testimonial />
       </div>
     </div>
