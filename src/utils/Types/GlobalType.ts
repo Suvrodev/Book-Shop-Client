@@ -35,3 +35,11 @@ export type TBook = {
   updatedAt: string;
   __v: number;
 };
+export type TReview = {
+  id: string;
+  image: string;
+  desc: string;
+  name: string;
+  position: string;
+  rating: number;
+};

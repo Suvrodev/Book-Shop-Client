@@ -17,6 +17,7 @@ import MyOrder from "../Pages/MyOrder/MyOrder";
 import AdminProtectedRoute from "../Layout/AdminProtectedRoute";
 import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
 import UserManagement from "../Pages/AdminPages/UserManagement/UserManagement";
+import CreateAbout from "../Pages/AdminPages/CreateAbout/CreateAbout";
 
 export const router = createBrowserRouter([
   {
@@ -113,6 +114,10 @@ export const router = createBrowserRouter([
       {
         path: "user-order",
         element: <MyOrder />,
+      },
+      {
+        path: "create-about",
+        element: <CreateAbout />,
       },
     ],
   },

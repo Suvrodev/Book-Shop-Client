@@ -15,4 +15,8 @@ export const adminDashboards = [
     text: "Order Management",
     path: "/admin-dashboard/order-management",
   },
+  {
+    text: "About Page",
+    path: "/admin-dashboard/create-about",
+  },
 ];

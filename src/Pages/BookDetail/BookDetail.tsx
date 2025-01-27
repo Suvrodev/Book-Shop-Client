@@ -29,7 +29,7 @@ const BookDetail = () => {
       return;
     }
     const insertingDataIntoCart = {
-      bookId: "6794f1eceb1591b49774d0fe",
+      bookId: _id,
       userId: (user as TUser)._id,
     };
     console.log("Inserting data: ", insertingDataIntoCart);

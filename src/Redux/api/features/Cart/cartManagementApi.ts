@@ -11,6 +11,7 @@ const cartManagementApi = baseApi.injectEndpoints({
           body: data,
         };
       },
+      invalidatesTags: ["cart"],
     }),
     getMyCart: builder.query({
       query: (id: string) => {
