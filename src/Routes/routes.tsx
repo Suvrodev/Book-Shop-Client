@@ -14,8 +14,9 @@ import UserProfile from "../Pages/UserProfile/UserProfile";
 import UserDashboard from "../Layout/UserDashboard/UserDashboard";
 import MyBook from "../Pages/MyBook/MyBook";
 import MyOrder from "../Pages/MyOrder/MyOrder";
-import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
 import AdminProtectedRoute from "../Layout/AdminProtectedRoute";
+import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
+import UserManagement from "../Pages/AdminPages/UserManagement/UserManagement";
 
 export const router = createBrowserRouter([
   {
@@ -89,7 +90,7 @@ export const router = createBrowserRouter([
     path: "admin-dashboard",
     element: (
       <AdminProtectedRoute>
-        <AdminDashboard />{" "}
+        <AdminDashboard />
       </AdminProtectedRoute>
     ),
     children: [
@@ -98,8 +99,8 @@ export const router = createBrowserRouter([
         element: <UserProfile />,
       },
       {
-        path: "user-add-book",
-        element: <AddBook />,
+        path: "user-management",
+        element: <UserManagement />,
       },
       {
         path: "user-book",

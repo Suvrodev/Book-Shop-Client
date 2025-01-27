@@ -3,7 +3,7 @@ import { useAppDispatch } from "../../Redux/hooks";
 import MenuIcon from "@mui/icons-material/Menu";
 import WestIcon from "@mui/icons-material/West";
 import { logout } from "../../Redux/api/features/auth/authSlice";
-import { adminDashboards } from "./AdminDashboard";
+import { adminDashboards } from "../../utils/Array/adminDashboard";
 
 const AdminDashboard = () => {
   const dispatch = useAppDispatch();

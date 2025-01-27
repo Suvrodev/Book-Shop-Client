@@ -8,7 +8,7 @@ interface IProps {
 }
 const AdminProtectedRoute = ({ children }: IProps) => {
   const { token } = useAppSelector((state) => state.auth);
-  console.log("Token in Admin Protected Route: ", token);
+  //   console.log("Token in Admin Protected Route: ", token);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let user: any;
   if (token) {
