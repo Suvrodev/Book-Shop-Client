@@ -5,7 +5,7 @@ import "./ImageGallery.css";
 const ImageGallery = () => {
   const { data, isLoading } = useGetBookImagesQuery(undefined);
   const bookImages = data?.data;
-  console.log("Image: ", bookImages);
+  //   console.log("Image: ", bookImages);
 
   if (isLoading) {
     return <LoadingPage />;
