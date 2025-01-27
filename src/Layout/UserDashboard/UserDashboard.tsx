@@ -33,7 +33,7 @@ const UserDashboard = () => {
         <div className="drawer-content ">
           {/* Page content here */}
           <div className="mx-4">
-            <h1>Dash Board er পেট</h1>
+            {/* <h1>Dash Board er পেট</h1> */}
             <Outlet />
           </div>
         </div>

@@ -4,7 +4,7 @@ interface Iprops {
   book: TBook;
 }
 const BookContent = ({ book }: Iprops) => {
-  console.log("book: ", book);
+  //   console.log("book: ", book);
   const {
     author,
     brand,

@@ -4,6 +4,8 @@ import { useAppSelector } from "../../../../Redux/hooks";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../../Redux/api/features/auth/authSlice";
 import DashboradButton from "./DashboradButton";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import DashboardCart from "./DashboardCart";
 
 const DesktopHeader = () => {
   const { token } = useAppSelector((state) => state.auth);
@@ -40,6 +42,7 @@ const DesktopHeader = () => {
       <div className="w-[25%]  flex justify-end items-center 0">
         {token ? (
           <div className=" flex items-center gap-x-3">
+            <DashboardCart />
             <DashboradButton />
             <button
               className=" btn btn-warning text-white "
