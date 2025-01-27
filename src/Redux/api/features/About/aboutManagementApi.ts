@@ -26,7 +26,7 @@ const aboutManagementApi = baseApi.injectEndpoints({
       query: ({ id, updateData }) => {
         return {
           url: `/about/${id}`,
-          method: "PUT",
+          method: "PATCH",
           body: updateData,
         };
       },
