@@ -7,8 +7,10 @@ import {
 import { useAppSelector } from "../../Redux/hooks";
 import { TUser } from "../../utils/Types/GlobalType";
 import { sonarId } from "../../utils/Fucntion/sonarId";
+import { useTitle } from "../../component/hook/useTitle";
 
 const MyCart = () => {
+  useTitle("My Cart");
   const { user } = useAppSelector((state) => state.auth);
   const [deleteCart] = useDeleteCartMutation();
   const { data, isLoading } = useGetMyCartQuery((user as TUser)?._id);

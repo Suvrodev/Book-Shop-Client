@@ -9,7 +9,9 @@ import { toast } from "sonner";
 import { sonarId } from "../../utils/Fucntion/sonarId";
 import UpdateBook from "../UpdateBook/UpdateBook";
 import { TBook } from "../../utils/Types/GlobalType";
+import { useTitle } from "../../component/hook/useTitle";
 const MyBook = () => {
+  useTitle("My Book");
   const [deleteBook] = useDeleteBookMutation();
   const { user } = useAppSelector((state) => state.auth);
   // console.log("User From My Book: ", user);

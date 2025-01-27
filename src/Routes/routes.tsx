@@ -18,6 +18,7 @@ import AdminProtectedRoute from "../Layout/AdminProtectedRoute";
 import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
 import UserManagement from "../Pages/AdminPages/UserManagement/UserManagement";
 import CreateAbout from "../Pages/AdminPages/CreateAbout/CreateAbout";
+import OrderManagement from "../Pages/AdminPages/OrderManagement/OrderManagement";
 
 export const router = createBrowserRouter([
   {
@@ -104,17 +105,10 @@ export const router = createBrowserRouter([
         element: <UserManagement />,
       },
       {
-        path: "user-book",
-        element: <MyBook />,
+        path: "order-management",
+        element: <OrderManagement />,
       },
-      {
-        path: "user-cart",
-        element: <MyCart />,
-      },
-      {
-        path: "user-order",
-        element: <MyOrder />,
-      },
+
       {
         path: "create-about",
         element: <CreateAbout />,

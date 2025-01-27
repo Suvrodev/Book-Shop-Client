@@ -5,8 +5,10 @@ import { userDashboards } from "../../utils/Array/userDashboard";
 import WestIcon from "@mui/icons-material/West";
 import { useAppDispatch } from "../../Redux/hooks";
 import { logout } from "../../Redux/api/features/auth/authSlice";
+import { useTitle } from "../../component/hook/useTitle";
 
 const UserDashboard = () => {
+  useTitle("User Dashboard");
   const dispatch = useAppDispatch();
   const location = useLocation()?.pathname;
   //   console.log("Location: ", location);

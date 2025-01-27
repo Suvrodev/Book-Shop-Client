@@ -4,8 +4,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import WestIcon from "@mui/icons-material/West";
 import { logout } from "../../Redux/api/features/auth/authSlice";
 import { adminDashboards } from "../../utils/Array/adminDashboard";
+import { useTitle } from "../../component/hook/useTitle";
 
 const AdminDashboard = () => {
+  useTitle("Admin Dashboard");
   const dispatch = useAppDispatch();
   const location = useLocation()?.pathname;
   return (

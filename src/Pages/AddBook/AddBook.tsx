@@ -8,6 +8,7 @@ import { useAddBookMutation } from "../../Redux/api/features/Book/bookManagement
 import axios from "axios";
 import bookImage from "../../assets/Images/Camera_2.jpg";
 import CreateIcon from "@mui/icons-material/Create";
+import { useTitle } from "../../component/hook/useTitle";
 
 //  const IHT=import.meta.env.VITE_Image_Upload_Token
 
@@ -15,6 +16,7 @@ const apiKey = "41f7b4c771a4156d5e8f59d93a4886f2";
 const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`;
 
 const AddBook = () => {
+  useTitle("Add Book");
   const [addBook] = useAddBookMutation();
   const imageRef = useRef<HTMLInputElement | null>(null);
   const { user } = useAppSelector((state) => state.auth);

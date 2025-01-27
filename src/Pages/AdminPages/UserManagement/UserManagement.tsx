@@ -1,9 +1,11 @@
+import { useTitle } from "../../../component/hook/useTitle";
 import LoadingPage from "../../../component/LoadingPage/LoadingPage";
 import { useGetAllUserQuery } from "../../../Redux/api/features/User/userManagementApi";
 import { TUser } from "../../../utils/Types/GlobalType";
 import UserManagementRow from "./UserManagementRow";
 
 const UserManagement = () => {
+  useTitle("User Management");
   const { data, isLoading } = useGetAllUserQuery(undefined);
   const user = data?.data;
   //   console.log("User: ", user);

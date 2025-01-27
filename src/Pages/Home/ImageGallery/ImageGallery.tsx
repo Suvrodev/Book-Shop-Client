@@ -55,7 +55,7 @@ const ImageGallery = () => {
             columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
           >
             <Masonry gutter="50px">
-              {bookImages.map(
+              {bookImages?.map(
                 (image: { _id: string; imageUrl: string }, i: number) => (
                   <img
                     key={i}

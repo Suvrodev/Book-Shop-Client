@@ -6,8 +6,10 @@ import { toast } from "sonner";
 import { useAppSelector } from "../../Redux/hooks";
 import { sonarId } from "../../utils/Fucntion/sonarId";
 import { TUser } from "../../utils/Types/GlobalType";
+import { useTitle } from "../../component/hook/useTitle";
 
 const BookDetail = () => {
+  useTitle("Book Detail");
   const [addCart] = useAddCartMutation();
 
   const { user } = useAppSelector((state) => state.auth);

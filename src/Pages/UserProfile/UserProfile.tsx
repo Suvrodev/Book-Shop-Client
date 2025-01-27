@@ -3,8 +3,10 @@ import { useAppSelector } from "../../Redux/hooks";
 import { useChangePasswordMutation } from "../../Redux/api/features/auth/authApi";
 import { toast } from "sonner";
 import { sonarId } from "../../utils/Fucntion/sonarId";
+import { useTitle } from "../../component/hook/useTitle";
 
 const UserProfile = () => {
+  useTitle("User Profile");
   const [updatePassword] = useChangePasswordMutation();
   const { user } = useAppSelector((state) => state.auth);
   console.log(user);

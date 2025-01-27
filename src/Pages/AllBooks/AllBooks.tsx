@@ -4,9 +4,10 @@ import { useGetAllBookQuery } from "../../Redux/api/features/Book/bookManagement
 
 import { useNavigate } from "react-router";
 import { TBook } from "../../utils/Types/GlobalType";
-import { StartFromTop } from "../../component/hook/StartFromTop";
+import { useTitle } from "../../component/hook/useTitle";
 
 const AllBooks = () => {
+  useTitle("All Book");
   const { data: bookData, isLoading } = useGetAllBookQuery(undefined);
   const books = bookData?.data || [];
   // console.log("All Books: ", books);
@@ -28,7 +29,6 @@ const AllBooks = () => {
   }
   return (
     <div>
-      <StartFromTop />
       <h1 className="text-2xl font-bold text-center my-4">All Books</h1>
 
       <div className="flex justify-center gap-4 my-4">
