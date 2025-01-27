@@ -10,6 +10,7 @@ const userManagementApi = baseApi.injectEndpoints({
           body: data,
         };
       },
+      invalidatesTags: ["book"],
     }),
     getAllBook: builder.query({
       query: () => {
@@ -45,6 +46,16 @@ const userManagementApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["book"],
     }),
+    updateBook: builder.mutation({
+      query: ({ id, updateData }) => {
+        return {
+          url: `/products/${id}`,
+          method: "PUT",
+          body: updateData,
+        };
+      },
+      invalidatesTags: ["book"],
+    }),
   }),
 });
 
@@ -54,4 +65,5 @@ export const {
   useGetSingleBookQuery,
   useGetOwnBookQuery,
   useDeleteBookMutation,
+  useUpdateBookMutation,
 } = userManagementApi;

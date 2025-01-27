@@ -4,7 +4,7 @@ import UpdateIcon from "@mui/icons-material/Update";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { sonarId } from "../../utils/Fucntion/sonarId";
 import { toast } from "sonner";
-import { useAddBookMutation } from "../../Redux/api/features/Book/bookManagementApi";
+import { useUpdateBookMutation } from "../../Redux/api/features/Book/bookManagementApi";
 import { useAppSelector } from "../../Redux/hooks";
 import axios from "axios";
 import { bookCategories } from "../../utils/Array/BookCategory";
@@ -18,7 +18,7 @@ interface Iprops {
 }
 
 const UpdateBook = ({ bookInfo }: Iprops) => {
-  console.log("Book Info: ", bookInfo);
+  //   console.log("Book Info: ", bookInfo);
 
   const {
     imageUrl,
@@ -30,6 +30,7 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
     category: bCategory,
     description,
     quantity,
+    inStock: bInStock,
   } = bookInfo;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -48,7 +49,7 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
   };
   //   Modal Default Class end
 
-  const [addBook] = useAddBookMutation();
+  const [updateBook] = useUpdateBookMutation();
   const imageRef = useRef<HTMLInputElement | null>(null);
   const { user } = useAppSelector((state) => state.auth);
   //   console.log("User in Add Book: ", user);
@@ -60,26 +61,51 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
   };
 
   //in Stock
-  const [inStock, setInStock] = useState(false);
-
+  // eslint-disable-next-line prefer-const, @typescript-eslint/no-explicit-any
+  let inStock: any = bInStock;
+  console.log("First in Stock----:  ", bInStock);
   const uploadImage = () => {
-    console.log("Upload Image");
     if (imageRef.current) {
       imageRef.current.click();
     }
   };
 
   const [previewImage, setPreviewImage] = useState<string | null>(imageUrl);
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     console.log("File selected: ", file); // Debugging
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setPreviewImage(imageUrl);
+      console.log("In Here Image url-----: ", imageUrl);
+      const formData = new FormData();
+      formData.append("image", file);
+      try {
+        toast.loading("Uploading Image", { id: sonarId });
+        const response = await axios.post(imageHostingUrl, formData);
+
+        if (response.data.success) {
+          const imageUrl = response.data.data.display_url;
+          console.log("New Image Linkkkkkkk: ", imageUrl);
+          toast.success("Image Uploaded", { id: sonarId });
+          const updateData = { imageUrl: imageUrl };
+          const res = await updateBook({
+            id: bookInfo?._id,
+            updateData,
+          }).unwrap();
+          console.log("Update Res: ", res);
+          if (res?.status) {
+            toast.success("Update Image Successfully");
+          }
+        }
+      } catch (error) {
+        console.error("Error uploading image:", error);
+      }
     } else {
       setPreviewImage(null);
     }
   };
+  //   console.log("Preview Image: ", previewImage);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -91,64 +117,36 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
     const model = Form.model.value;
     const price = parseFloat(Form.price.value);
     const description = Form.description.value;
-    const quantity = Form.quantity.value;
-    const fileInput = Form.image.files[0];
+    const quantity = parseInt(Form.quantity.value);
+
     if (quantity > 0) {
-      setInStock(true);
+      inStock = true;
     } else {
-      setInStock(false);
+      inStock = false;
     }
+
     if (!category) {
       toast.error("Category field is empty", { id: sonarId });
     }
 
-    // if (!fileInput) {
-    //   toast.error("Please select an image", { id: sonarId });
-    //   return;
-    // }
-    // console.log("File input: ", fileInput);
-
-    // Create FormData and append the file
-    const formData = new FormData();
-    formData.append("image", fileInput);
-
-    try {
-      toast.loading("Updating Book", { id: sonarId });
-      // Upload the image using Axios
-      const response = await axios.post(imageHostingUrl, formData);
-
-      if (response.data.success) {
-        const imageUrl = response.data.data.display_url; // Get the image URL
-        // console.log("Image uploaded successfully:", imageUrl);
-        // toast.success("Image Upload successfully", { id: sonarId });
-
-        ///Send Data in Back end
-        const formData = {
-          title,
-          author,
-          brand,
-          model,
-          price,
-          imageUrl,
-          category,
-          description,
-          quantity,
-          inStock,
-          refUser: user?.id,
-        };
-        console.log("Form Data: ", formData);
-        // toast.loading("Inserting Book", { id: sonarId });
-        // const res = await addBook(formData).unwrap();
-        // console.log("Res: ", res);
-        // if (res?.success) {
-        //   toast.success(res?.message, { id: sonarId });
-        // }
-      } else {
-        console.error("Image upload failed:", response.data);
-        toast.error("Something error in uploading Image", { id: sonarId });
-      }
-    } catch (error) {
-      console.error("Error uploading image:", error);
+    ///Send Data in Back end
+    const updateData = {
+      title,
+      author,
+      brand,
+      model,
+      price,
+      category,
+      description,
+      quantity,
+      inStock,
+    };
+    console.log("Form Update Data: ", updateData);
+    toast.loading("Updating Book", { id: sonarId });
+    const res = await updateBook({ id: bookInfo?._id, updateData }).unwrap();
+    console.log("Res: ", res);
+    if (res?.status) {
+      toast.success(res?.message, { id: sonarId });
     }
   };
 

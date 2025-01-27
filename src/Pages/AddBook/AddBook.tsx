@@ -26,11 +26,7 @@ const AddBook = () => {
   };
 
   //in Stock
-  const [inStock, setInStock] = useState(false);
-  // const handleStock = (event: ChangeEvent<HTMLInputElement>) => {
-  //   const data = event.target.checked;
-  //   setInStock(data);
-  // };
+  let inStock;
 
   ///Handle Image
 
@@ -64,12 +60,12 @@ const AddBook = () => {
     const model = Form.model.value;
     const price = parseFloat(Form.price.value);
     const description = Form.description.value;
-    const quantity = Form.quantity.value;
+    const quantity = parseInt(Form.quantity.value);
     const fileInput = Form.image.files[0];
     if (quantity > 0) {
-      setInStock(true);
+      inStock = true;
     } else {
-      setInStock(false);
+      inStock = false;
     }
     if (!category) {
       toast.error("Category field is empty", { id: sonarId });
@@ -107,7 +103,7 @@ const AddBook = () => {
           description,
           quantity,
           inStock,
-          refUser: user?.id,
+          refUser: user?._id,
         };
         // console.log("Form Data: ", formData);
         toast.loading("Inserting Book", { id: sonarId });
