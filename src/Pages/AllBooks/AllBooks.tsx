@@ -1,98 +1,25 @@
 import { useState } from "react";
 import LoadingPage from "../../component/LoadingPage/LoadingPage";
 import { useGetAllBookQuery } from "../../Redux/api/features/Book/bookManagementApi";
-import { Button, Table } from "antd";
-import type { TableColumnsType, TableProps } from "antd";
-import { useNavigate } from "react-router";
 
-interface BookType {
-  key: React.Key;
-  title: string;
-  author: string;
-  category: string;
-  price: number;
-  inStock: boolean;
-}
+import { useNavigate } from "react-router";
+import { TBook } from "../../utils/Types/GlobalType";
 
 const AllBooks = () => {
   const { data: bookData, isLoading } = useGetAllBookQuery(undefined);
   const books = bookData?.data || [];
+  // console.log("All Books: ", books);
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   const navigate = useNavigate();
-
-  const handleGoDetail = (id) => {
-    console.log("id here: ", id);
-  };
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
-  const filteredBooks = books.filter((book: any) =>
-    [book.title, book.author, book.category]
-      .join(" ")
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase())
-  );
-
-  const columns: TableColumnsType<BookType> = [
-    {
-      title: "Title",
-      dataIndex: "title",
-      key: "title",
-      sorter: (a, b) => a.title.localeCompare(b.title),
-    },
-    {
-      title: "Author",
-      dataIndex: "author",
-      key: "author",
-    },
-    {
-      title: "Category",
-      dataIndex: "category",
-      key: "category",
-    },
-    {
-      title: "Price",
-      dataIndex: "price",
-      key: "price",
-      sorter: (a, b) => a.price - b.price,
-      render: (price) => `$${price.toFixed(2)}`,
-    },
-    {
-      title: "In Stock",
-      dataIndex: "inStock",
-      key: "inStock",
-      filters: [
-        { text: "In Stock", value: true },
-        { text: "Out of Stock", value: false },
-      ],
-      onFilter: (value, record) => record.inStock === value,
-      render: (inStock) => (inStock ? "Yes" : "No"),
-    },
-    {
-      title: "Action",
-      key: "action",
-      render: (_, record) => (
-        <Button
-          className="btn btn-primary text-white"
-          // onClick={() => navigate(`/book-detail/${record._id}`)}
-          onClick={() => handleGoDetail(record._id)}
-        >
-          View Details
-        </Button>
-      ),
-    },
-  ];
-
-  const onChange: TableProps<BookType>["onChange"] = (
-    pagination,
-    filters,
-    sorter,
-    extra
-  ) => {
-    console.log("Table params:", pagination, filters, sorter, extra);
+  //Go Detail
+  const handleGoDetail = (_id: string) => {
+    navigate(`/book-detail/${_id}`);
   };
 
   if (isLoading) {
@@ -112,20 +39,59 @@ const AllBooks = () => {
         />
         <button className="btn btn-primary text-white">Search</button>
       </div>
-
-      <Table<BookType>
-        columns={columns}
-        dataSource={filteredBooks.map((book) => ({
-          key: book._id,
-          title: book.title,
-          author: book.author,
-          category: book.category,
-          price: book.price,
-          inStock: book.inStock,
-        }))}
-        onChange={onChange}
-        showSorterTooltip
-      />
+      <div>
+        <div className="overflow-x-auto">
+          <table className="table table-zebra">
+            {/* head */}
+            <thead>
+              <tr>
+                <th></th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Brand</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Model</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Available</th>
+                <th>Detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              {books?.map((data: TBook, idx: number) => (
+                <tr key={idx}>
+                  <th> {idx} </th>
+                  <th>
+                    {" "}
+                    <img
+                      src={data?.imageUrl}
+                      alt=""
+                      className="w-[65px] h-[40px]"
+                    />{" "}
+                  </th>
+                  <td>{data?.title}</td>
+                  <td>{data?.brand}</td>
+                  <td>{data?.author}</td>
+                  <td>{data?.category}</td>
+                  <td>{data?.model}</td>
+                  <td>{data?.price}</td>
+                  <td>{data?.quantity}</td>
+                  <td>{data?.inStock ? "Yes" : "No"}</td>
+                  <td>
+                    <button
+                      className="btn btn-sm btn-success text-white"
+                      onClick={() => handleGoDetail(data?._id)}
+                    >
+                      Go Detail
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };

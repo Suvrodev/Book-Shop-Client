@@ -5,7 +5,6 @@ import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { sonarId } from "../../utils/Fucntion/sonarId";
 import { toast } from "sonner";
 import { useUpdateBookMutation } from "../../Redux/api/features/Book/bookManagementApi";
-import { useAppSelector } from "../../Redux/hooks";
 import axios from "axios";
 import { bookCategories } from "../../utils/Array/BookCategory";
 import bookImage from "../../assets/Images/bookk.jpg";
@@ -52,7 +51,6 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
 
   const [updateBook] = useUpdateBookMutation();
   const imageRef = useRef<HTMLInputElement | null>(null);
-  const { user } = useAppSelector((state) => state.auth);
   //   console.log("User in Add Book: ", user);
   const [category, setCategory] = useState(bCategory);
   const handleCategory = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -62,8 +60,7 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
   };
 
   //in Stock
-  // eslint-disable-next-line prefer-const, @typescript-eslint/no-explicit-any
-  let inStock: any = bInStock;
+  let inStock: boolean = bInStock;
   const uploadImage = () => {
     if (imageRef.current) {
       imageRef.current.click();

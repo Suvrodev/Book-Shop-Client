@@ -15,12 +15,10 @@ const BookDetail = () => {
   const { _id } = useParams(); // Correctly access _id
   //   console.log("The book ID is: ", _id);
 
-  const { data, isLoading } = useGetSingleBookQuery("6794f1eceb1591b49774d0fe");
+  const { data, isLoading } = useGetSingleBookQuery(_id);
   const book = data?.data;
-  //   console.log("Book: ", book);
+  console.log("Book: ", book);
 
-  const bookImage =
-    "https://www.wiley.com/storefront-pdp-assets/_next/image?url=https%3A%2F%2Fmedia.wiley.com%2Fjournal%2F21983844-cover.jpg&w=384&q=75";
   if (isLoading) {
     return <LoadingPage />;
   }
@@ -32,7 +30,7 @@ const BookDetail = () => {
     }
     const insertingDataIntoCart = {
       bookId: "6794f1eceb1591b49774d0fe",
-      userId: (user as TUser).id,
+      userId: (user as TUser)._id,
     };
     console.log("Inserting data: ", insertingDataIntoCart);
     toast.loading("Inserting Cart", { id: sonarId });
@@ -44,13 +42,12 @@ const BookDetail = () => {
   };
   return (
     <div>
-      <h1>id: {_id} </h1>
       <div className="container mx-auto px-4 py-12 bg-gradient-to-r from-purple-500 via-indigo-600 to-blue-700 text-white rounded-xl shadow-xl">
         <div className="flex flex-col md:flex-row items-center space-x-8">
           {/* Book Image Section */}
           <div className="flex-shrink-0">
             <img
-              src={bookImage} // Replace with actual book image URL
+              src={book?.imageUrl} // Replace with actual book image URL
               alt="Book Cover"
               className="rounded-lg shadow-lg w-64 h-96 object-cover"
             />
@@ -91,15 +88,18 @@ const BookDetail = () => {
             </div>
 
             <div className="mt-6">
-              <button
-                className={`btn btn-primary ${
-                  book?.inStock ? "" : "btn-disabled"
-                }`}
-                disabled={!book?.inStock}
-                onClick={() => handleAddCart()}
-              >
-                {book?.inStock ? "Buy Now" : "Out of Stock"}
-              </button>
+              {book?.inStock ? (
+                <button
+                  className="text-white btn btn-success"
+                  onClick={() => handleAddCart()}
+                >
+                  Buy Now
+                </button>
+              ) : (
+                <button className="text-white btn btn-error">
+                  Out of Stock
+                </button>
+              )}
             </div>
           </div>
         </div>

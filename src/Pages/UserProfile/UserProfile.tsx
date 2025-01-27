@@ -27,7 +27,7 @@ const UserProfile = () => {
     console.log("Form Data: ", formData);
     toast.loading("Changing Password", { id: sonarId });
     const res = await updatePassword({
-      id: user?.id,
+      id: user?._id,
       userPassword: formData,
     }).unwrap();
     console.log("Res: ", res);
