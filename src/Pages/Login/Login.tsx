@@ -23,7 +23,7 @@ const Login = () => {
   const navigate = useNavigate();
   const loc = useLocation();
   //console.log(loc)
-  const from = loc.state?.from?.pathname || "/";
+  const toGo = loc.state?.from?.pathname || "/";
   // console.log(from)
 
   const [showPassword, setShowPassword] = useState(false);
@@ -47,7 +47,7 @@ const Login = () => {
     if (res?.success) {
       toast.success("Login successfully", { id: sonarId });
       dispatch(setUser({ user, token }));
-      navigate("/");
+      navigate(toGo);
     }
   };
 

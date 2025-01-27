@@ -6,7 +6,8 @@ import { sonarId } from "../../utils/Fucntion/sonarId";
 import { useAppSelector } from "../../Redux/hooks";
 import { useAddBookMutation } from "../../Redux/api/features/Book/bookManagementApi";
 import axios from "axios";
-import bookImage from "../../assets/Images/bookk.jpg";
+import bookImage from "../../assets/Images/Camera_2.jpg";
+import CreateIcon from "@mui/icons-material/Create";
 
 //  const IHT=import.meta.env.VITE_Image_Upload_Token
 
@@ -125,24 +126,32 @@ const AddBook = () => {
     <div className="form-container">
       <h2 className="form-title">Add Book</h2>
       {/* Show the selected image */}
-      <div className="image-preview mb-4 flex justify-center">
+      <div className="image-preview mb-4 flex justify-center ">
         {previewImage ? (
-          <img
-            src={previewImage}
-            alt="Preview"
-            className="w-48 h-48 object-cover rounded-lg shadow"
-            onClick={() => uploadImage()}
-          />
+          <div className="relative">
+            <img
+              src={previewImage}
+              alt="Preview"
+              className="w-48 h-48 object-cover rounded-lg shadow"
+              onClick={() => uploadImage()}
+            />
+            <p className=" text-black absolute top-4 right-2">
+              {" "}
+              <CreateIcon onClick={() => uploadImage()} />{" "}
+            </p>
+          </div>
         ) : (
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center relative">
             <img
               src={bookImage}
               alt=""
               className="w-48 h-48 object-cover rounded-lg shadow"
               onClick={() => uploadImage()}
             />
-            <p className="text-gray-500 text-center">
-              No image selected. Press on Image to Select Image
+            <p className="text-gray-500 text-center">Please Select an Image</p>
+            <p className=" text-black absolute top-4 right-2">
+              {" "}
+              <CreateIcon onClick={() => uploadImage()} />{" "}
             </p>
           </div>
         )}

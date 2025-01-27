@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 import "./UpdateBook.css";
 import UpdateIcon from "@mui/icons-material/Update";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
@@ -12,6 +12,7 @@ import bookImage from "../../assets/Images/bookk.jpg";
 import { TBook } from "../../utils/Types/GlobalType";
 const apiKey = "41f7b4c771a4156d5e8f59d93a4886f2";
 const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`;
+import CreateIcon from "@mui/icons-material/Create";
 
 interface Iprops {
   bookInfo: TBook;
@@ -63,7 +64,6 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
   //in Stock
   // eslint-disable-next-line prefer-const, @typescript-eslint/no-explicit-any
   let inStock: any = bInStock;
-  console.log("First in Stock----:  ", bInStock);
   const uploadImage = () => {
     if (imageRef.current) {
       imageRef.current.click();
@@ -167,12 +167,18 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
           {/* Show the selected image */}
           <div className="image-preview mb-4 flex justify-center">
             {previewImage ? (
-              <img
-                src={previewImage}
-                alt="Preview"
-                className="w-48 h-48 object-cover rounded-lg shadow"
-                onClick={() => uploadImage()}
-              />
+              <div className="relative">
+                <img
+                  src={previewImage}
+                  alt="Preview"
+                  className="w-48 h-48 object-cover rounded-lg shadow"
+                  onClick={() => uploadImage()}
+                />
+                <p className=" text-black absolute top-4 right-2">
+                  {" "}
+                  <CreateIcon onClick={() => uploadImage()} />{" "}
+                </p>
+              </div>
             ) : (
               <div className="flex flex-col items-center">
                 <img
