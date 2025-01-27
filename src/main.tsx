@@ -8,6 +8,7 @@ import { Toaster } from "sonner";
 import { Provider } from "react-redux";
 import { persistor, store } from "./Redux/store";
 import { PersistGate } from "redux-persist/integration/react";
+import GoTopButton from "./component/GoTopButton/GoTopButton";
 
 createRoot(document.getElementById("root")!).render(
   <div>
@@ -18,6 +19,7 @@ createRoot(document.getElementById("root")!).render(
             <RouterProvider router={router} />
           </PersistGate>
           <Toaster />
+          <GoTopButton />
         </StrictMode>
       </HelmetProvider>
     </Provider>
