@@ -1,5 +1,4 @@
 import { useTitle } from "../../component/hook/useTitle";
-import Banner from "../SharedPage/Banner/Banner";
 import NewBanner from "../SharedPage/NewBanner/NewBanner";
 import HomeBook from "./HomeBook/HomeBook";
 import ImageGallery from "./ImageGallery/ImageGallery";

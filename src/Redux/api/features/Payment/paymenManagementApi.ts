@@ -14,7 +14,16 @@ const paymentManagementApi = baseApi.injectEndpoints({
         };
       },
     }),
-    getMyCart: builder.query({
+    getMyOrder: builder.query({
+      query: (id: string) => {
+        return {
+          url: `/payment/payment/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["payment"],
+    }),
+    getAdminOrder: builder.query({
       query: (id: string) => {
         // console.log("Come id: ", id);
         return {
@@ -22,17 +31,22 @@ const paymentManagementApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["adminpayment"],
     }),
-    deleteCart: builder.mutation({
+    deletePayment: builder.mutation({
       query: (id) => {
-        console.log("Come cart id for delete: ", id);
         return {
-          url: `/cart/${id}`,
+          url: `/payment/payment/${id}`,
           method: "DELETE",
         };
       },
+      invalidatesTags: ["adminpayment", "payment"],
     }),
   }),
 });
 
-export const { useInitialPayMutation } = paymentManagementApi;
+export const {
+  useInitialPayMutation,
+  useGetMyOrderQuery,
+  useDeletePaymentMutation,
+} = paymentManagementApi;

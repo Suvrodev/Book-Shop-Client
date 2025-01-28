@@ -43,3 +43,14 @@ export type TReview = {
   position: string;
   rating: number;
 };
+
+export type TOrder = {
+  _id: string;
+  transactionId: string;
+  userId: string;
+  productId: string;
+  price: number;
+  quantity: number;
+  paidStatus: boolean;
+  adminApproval: boolean | string;
+};

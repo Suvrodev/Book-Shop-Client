@@ -34,7 +34,7 @@ const UserDashboard = () => {
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content ">
           {/* Page content here */}
-          <div className="mx-4">
+          <div className="mx-4 md:mx-10 my-6 md:my-10">
             {/* <h1>Dash Board er পেট</h1> */}
             <Outlet />
           </div>
