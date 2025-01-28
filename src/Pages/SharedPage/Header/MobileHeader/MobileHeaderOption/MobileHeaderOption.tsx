@@ -10,7 +10,7 @@ const MobileHeaderOption = ({ handleClick }: any) => {
   const dispatch = useDispatch();
   return (
     <div className="bg-green-500 text-white flex flex-col gap-4 px-5 py-5 relative z-10">
-      <div className="flex flex-col gap-4 font-bold w-full  ">
+      <div className="flex flex-col gap-4 font-bold w-full ">
         <NavLink
           className={({ isActive }) => (isActive ? "text-blue-500" : "acLk ")}
           to="/home"
@@ -35,11 +35,13 @@ const MobileHeaderOption = ({ handleClick }: any) => {
           About Us
         </NavLink>
 
-        <div className="w-[25%]  flex justify-end items-center 0">
+        <div className="w-full  flex justify-start items-center 0">
           {token ? (
-            <div className=" flex items-center gap-x-3">
-              <DashboardCart />
-              <DashboradButton />
+            <div className=" flex flex-col items-start gap-x-3">
+              <div className="flex flex-row-reverse items-center">
+                <DashboardCart />
+                <DashboradButton />
+              </div>
               <button
                 className=" btn btn-warning text-white "
                 onClick={() => dispatch(logout())}
