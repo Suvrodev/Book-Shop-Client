@@ -127,131 +127,151 @@ const AddBook = () => {
   };
 
   return (
-    <div className="form-container">
-      <h2 className="form-title">Add Book</h2>
-      {/* Show the selected image */}
-      <div className="image-preview mb-4 flex justify-center ">
-        {previewImage ? (
-          <div className="relative">
-            <img
-              src={previewImage}
-              alt="Preview"
-              className="w-48 h-48 object-cover rounded-lg shadow"
-              onClick={() => uploadImage()}
-            />
-            <p className=" text-black absolute top-4 right-2">
-              {" "}
-              <CreateIcon onClick={() => uploadImage()} />{" "}
-            </p>
+    <div className="min-h-screen bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white py-12">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-extrabold mb-6 text-teal-400 text-center">
+          Add a New Book
+        </h2>
+        <div className="max-w-3xl mx-auto">
+          <div className="mb-6 flex justify-center">
+            {previewImage ? (
+              <div className="relative">
+                <img
+                  src={previewImage}
+                  alt="Preview"
+                  className="w-48 h-48 object-cover rounded-lg shadow-lg cursor-pointer"
+                  onClick={uploadImage}
+                />
+                <CreateIcon
+                  className="absolute top-2 right-2 text-white cursor-pointer"
+                  onClick={uploadImage}
+                />
+              </div>
+            ) : (
+              <div className="relative">
+                <img
+                  src={bookImage}
+                  alt="Default"
+                  className="w-48 h-48 object-cover rounded-lg shadow-lg cursor-pointer"
+                  onClick={uploadImage}
+                />
+                <CreateIcon
+                  className="absolute top-2 right-2 text-white cursor-pointer"
+                  onClick={uploadImage}
+                />
+              </div>
+            )}
           </div>
-        ) : (
-          <div className="flex flex-col items-center relative">
-            <img
-              src={bookImage}
-              alt=""
-              className="w-48 h-48 object-cover rounded-lg shadow"
-              onClick={() => uploadImage()}
-            />
-            <p className="text-gray-500 text-center">Please Select an Image</p>
-            <p className=" text-black absolute top-4 right-2">
-              {" "}
-              <CreateIcon onClick={() => uploadImage()} />{" "}
-            </p>
-          </div>
-        )}
-      </div>
-      <form onSubmit={handleSubmit} className="form">
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-x-4">
-          {/* Title Author */}
-          <div className="form-group">
-            <label htmlFor="title">Title:</label>
-            <input type="text" name="titlee" required />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="author">Author:</label>
-            <input type="text" name="author" required />
-          </div>
-        </div>
-        {/* Brand Model */}
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-x-4">
-          <div className="form-group">
-            <label htmlFor="title">Brand:</label>
-            <input type="text" name="brand" required />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="author">Model:</label>
-            <input type="text" name="model" required />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-x-4">
-          <div className="form-group">
-            <label htmlFor="price">Price:</label>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block mb-2 text-sm font-medium">Title</label>
+                <input
+                  type="text"
+                  name="titlee"
+                  required
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
+                />
+              </div>
+              <div>
+                <label className="block mb-2 text-sm font-medium">Author</label>
+                <input
+                  type="text"
+                  name="author"
+                  required
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block mb-2 text-sm font-medium">Brand</label>
+                <input
+                  type="text"
+                  name="brand"
+                  required
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
+                />
+              </div>
+              <div>
+                <label className="block mb-2 text-sm font-medium">Model</label>
+                <input
+                  type="text"
+                  name="model"
+                  required
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block mb-2 text-sm font-medium">Price</label>
+                <input
+                  type="number"
+                  name="price"
+                  required
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 removeDefaultIcon"
+                />
+              </div>
+              <div>
+                <label className="block mb-2 text-sm font-medium">
+                  Category
+                </label>
+                <select
+                  name="category"
+                  value={category}
+                  onChange={handleCategory}
+                  required
+                  className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
+                >
+                  <option value="" disabled>
+                    Select Category
+                  </option>
+                  {bookCategories.map((data, idx) => (
+                    <option key={idx} value={data}>
+                      {data}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div>
+              <label className="block mb-2 text-sm font-medium">
+                Description
+              </label>
+              <textarea
+                name="description"
+                rows={4}
+                required
+                className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500"
+              />
+            </div>
+            <div>
+              <label className="block mb-2 text-sm font-medium">Quantity</label>
+              <input
+                type="number"
+                name="quantity"
+                required
+                className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring focus:ring-teal-500 removeDefaultIcon"
+              />
+            </div>
             <input
-              type="number"
-              name="price"
-              required
-              className="removeDefaultIcon"
+              ref={imageRef}
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={handleImageChange}
+              hidden
             />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="category">Category:</label>
-            <select
-              name="category"
-              value={category}
-              onChange={handleCategory}
-              required
+            <button
+              type="submit"
+              className="w-full py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 focus:outline-none focus:ring focus:ring-teal-500"
             >
-              <option value="" disabled>
-                Select Category
-              </option>
-              {bookCategories.map((data, idx) => (
-                <option key={idx} value={data}>
-                  {data}
-                </option>
-              ))}
-            </select>
-          </div>
+              Submit
+            </button>
+          </form>
         </div>
-
-        <div className="form-group hidden">
-          <label htmlFor="quantity">Image:</label>
-          <input
-            ref={imageRef}
-            type="file"
-            name="image"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="description">Description:</label>
-          <textarea name="description" rows={4} required />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="quantity">Quantity:</label>
-          <input
-            type="number"
-            name="quantity"
-            required
-            className="removeDefaultIcon"
-          />
-        </div>
-
-        {/* <div className="flex items-center gap-x-2 mb-4">
-          <input type="checkbox" name="" id="" onChange={handleStock} />
-          <p className="text-black">In Stock</p>
-        </div> */}
-
-        <button type="submit" className="form-submit">
-          Submit
-        </button>
-      </form>
+      </div>
     </div>
   );
 };

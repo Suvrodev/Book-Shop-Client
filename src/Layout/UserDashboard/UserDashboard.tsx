@@ -15,14 +15,11 @@ const UserDashboard = () => {
   return (
     <div>
       {/* Dashboard Header */}
-      <div className="text-xl font-bold text-center bg-green-600 py-4 px-4 flex">
+      <div className="text-xl font-bold text-center bg-gradient-to-r from-purple-500 to-indigo-500 py-4 px-4 flex text-white">
         <div className="w-[33%] flex justify-start">
           {/* Menu Icon */}
           <label className="md:hidden" htmlFor="my-drawer-2">
-            <MenuIcon
-              // onClick={toggleDrawer}
-              className="cursor-pointer lg:hidden"
-            />
+            <MenuIcon className="cursor-pointer lg:hidden" />
           </label>
         </div>
         <p className="w-[33%]">This is Suvrodeb Book-Shop</p>
@@ -32,10 +29,9 @@ const UserDashboard = () => {
       {/* Start Drawer */}
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content ">
+        <div className="drawer-content">
           {/* Page content here */}
           <div className="mx-4 md:mx-10 my-6 md:my-10">
-            {/* <h1>Dash Board er পেট</h1> */}
             <Outlet />
           </div>
         </div>
@@ -45,33 +41,34 @@ const UserDashboard = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+          <ul className="menu bg-gradient-to-b from-gray-800 to-gray-900 text-gray-200 min-h-full w-80 p-4">
             {/* Sidebar content here */}
-            <div className="flex gap-x-4 items-center">
-              <div className="bg-white text-black p-1 rounded-full">
+            <div className="flex gap-x-4 items-center mb-6">
+              <div className="bg-indigo-500 text-white p-2 rounded-full shadow-lg">
                 <Link to={"/"}>
                   <WestIcon />
                 </Link>
               </div>
-              <h1 className="text-xl font-bold">User Dashboard</h1>
+              <h1 className="text-xl font-bold text-white">User Dashboard</h1>
             </div>
 
-            <div className=" flex flex-col ic gap-2 my-4">
+            <div className="flex flex-col gap-4">
               {userDashboards.map((data) => (
                 <Link
                   key={data?.path}
                   to={data?.path}
-                  className={`dashboardLink ${
-                    location === data?.path ? "text-blue-600" : ""
+                  className={`dashboardLink block px-4 py-2 rounded-md transition ${
+                    location === data?.path
+                      ? "bg-purple-700 text-white"
+                      : "hover:bg-purple-600 hover:text-white"
                   }`}
                 >
-                  {" "}
-                  {data?.text}{" "}
+                  {data?.text}
                 </Link>
               ))}
               <div>
                 <button
-                  className="btn btn-error text-white relative left-4"
+                  className="btn bg-red-600 hover:bg-red-700 text-white rounded-md shadow-md w-full"
                   onClick={() => dispatch(logout())}
                 >
                   Logout

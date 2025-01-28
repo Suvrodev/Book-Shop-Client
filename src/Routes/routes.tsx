@@ -22,6 +22,8 @@ import OrderManagement from "../Pages/AdminPages/OrderManagement/OrderManagement
 import PaymentSuccessfull from "../Pages/SharedPage/Payment/PaymentSuccessfull";
 import PaymentUnSuccessfull from "../Pages/SharedPage/Payment/PaymentUnSuccessfull";
 import LoadingPage from "../component/LoadingPage/LoadingPage";
+import UserDashboardHome from "../Layout/UserDashboard/UserDashboardHome";
+import AdminDashboardHome from "../Layout/AdminDashboard/AdminDashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +72,14 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
+        index: true,
+        element: <UserDashboardHome />,
+      },
+      {
+        path: "user-home",
+        element: <UserDashboardHome />,
+      },
+      {
         path: "user-profile",
         element: <UserProfile />,
       },
@@ -99,6 +109,14 @@ export const router = createBrowserRouter([
       </AdminProtectedRoute>
     ),
     children: [
+      {
+        index: true,
+        element: <AdminDashboardHome />,
+      },
+      {
+        path: "admin-home",
+        element: <AdminDashboardHome />,
+      },
       {
         path: "user-profile",
         element: <UserProfile />,

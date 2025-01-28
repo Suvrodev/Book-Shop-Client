@@ -17,20 +17,17 @@ const AdminDashboard = () => {
         <div className="w-[33%] flex justify-start">
           {/* Menu Icon */}
           <label className="md:hidden" htmlFor="my-drawer-2">
-            <MenuIcon
-              // onClick={toggleDrawer}
-              className="cursor-pointer lg:hidden"
-            />
+            <MenuIcon className="cursor-pointer lg:hidden text-white" />
           </label>
         </div>
-        <p className="w-[33%]">This is Suvrodeb Book-Shop</p>
+        <p className="w-[33%] text-white">This is Suvrodeb Book-Shop</p>
         <div className="w-[33%]"></div>
       </div>
 
       {/* Start Drawer */}
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content ">
+        <div className="drawer-content">
           {/* Page content here */}
           <div className="mx-4">
             <Outlet />
@@ -43,32 +40,36 @@ const AdminDashboard = () => {
             className="drawer-overlay"
           ></label>
           <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-            {/* Sidebar content here */}
-            <div className="flex gap-x-4 items-center">
+            {/* Sidebar content */}
+            <div className="flex gap-x-4 items-center mb-6">
               <div className="bg-white text-black p-1 rounded-full">
                 <Link to={"/"}>
                   <WestIcon />
                 </Link>
               </div>
-              <h1 className="text-xl font-bold">Admin Dashboard</h1>
+              <h1 className="text-xl font-bold text-gray-900">
+                Admin Dashboard
+              </h1>
             </div>
 
-            <div className=" flex flex-col ic gap-2 my-4">
+            <div className="flex flex-col gap-4 my-4">
               {adminDashboards.map((data) => (
                 <Link
                   key={data?.path}
                   to={data?.path}
-                  className={`dashboardLink ${
-                    location === data?.path ? "text-blue-600" : ""
+                  className={`dashboardLink text-lg font-medium py-2 px-4 rounded-lg ${
+                    location === data?.path
+                      ? "bg-blue-600 text-white"
+                      : "hover:bg-gray-700 text-gray-300"
                   }`}
                 >
-                  {" "}
-                  {data?.text}{" "}
+                  {data?.text}
                 </Link>
               ))}
+
               <div>
                 <button
-                  className="btn btn-error text-white relative left-4"
+                  className="btn btn-error text-white relative left-4 py-2 px-4 rounded-md mt-4"
                   onClick={() => dispatch(logout())}
                 >
                   Logout
