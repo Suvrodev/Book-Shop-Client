@@ -16,7 +16,7 @@ const paymentManagementApi = baseApi.injectEndpoints({
     }),
     getMyCart: builder.query({
       query: (id: string) => {
-        console.log("Come id: ", id);
+        // console.log("Come id: ", id);
         return {
           url: `/cart/${id}`,
           method: "GET",

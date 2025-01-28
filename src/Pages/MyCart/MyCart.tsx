@@ -17,7 +17,7 @@ const MyCart = () => {
   const [initialPayment] = useInitialPayMutation();
   const { data, isLoading } = useGetMyCartQuery((user as TUser)?._id);
   const carts = data?.data;
-  console.log("Carts: ", carts);
+  // console.log("Carts: ", carts);
 
   const handleDelete = async (id: string) => {
     toast.loading("Deleting", { id: sonarId });
@@ -32,14 +32,25 @@ const MyCart = () => {
   const handleConfirmOrder = async (
     cartId: string,
     productId: string,
-    price: string
+    price: string,
+    quantity: string
   ) => {
-    console.log("Cart id: ", cartId);
-    console.log("User id: ", user?._id);
-    console.log("Product id:", productId);
-    console.log("Price:", price);
-
-    const orderData = { cartId, userId: user?._id, productId, price };
+    // console.log("Cart id: ", cartId);
+    // console.log("User id: ", user?._id);
+    // console.log("Product id:", productId);
+    // console.log("Price:", price);
+    const priceInNumber = Number(price);
+    const quantityInNumber = Number(quantity);
+    const totalPrice = priceInNumber * quantityInNumber;
+    const orderData = {
+      cartId,
+      userId: user?._id,
+      productId,
+      price: totalPrice,
+      quantity: quantity,
+    };
+    console.log("Order Data: ", orderData);
+    toast.loading("Confirming Order", { id: sonarId });
     const res = await initialPayment(orderData).unwrap();
     console.log("Res: ", res);
     if (res?.url) {
@@ -98,11 +109,19 @@ const MyCart = () => {
                     ${cartItem?.bookId?.model}
                   </p>
                 </div>
-                <div className="flex gap-2 items-center">
-                  <p className="font-bold">Price</p>
-                  <p className="text-orange-500 text-lg font-bold">
-                    ${cartItem?.bookId?.price}
-                  </p>
+                <div>
+                  <div className="flex gap-2 items-center">
+                    <p className="font-bold">Price</p>
+                    <p className="text-orange-600 text-lg font-bold">
+                      ${cartItem?.bookId?.price}
+                    </p>
+                  </div>
+                  <div className="flex gap-2 items-center">
+                    <p className="font-bold">Quantity: </p>
+                    <p className="text-white text-lg font-bold">
+                      {cartItem?.quantity}
+                    </p>
+                  </div>
                 </div>
 
                 <div className="flex items-center gap-4">
@@ -112,7 +131,8 @@ const MyCart = () => {
                       handleConfirmOrder(
                         cartItem._id,
                         cartItem?.bookId?._id,
-                        cartItem?.bookId?.price
+                        cartItem?.bookId?.price,
+                        cartItem?.quantity
                       )
                     }
                   >

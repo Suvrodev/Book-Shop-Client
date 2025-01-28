@@ -4,7 +4,6 @@ import { useAppSelector } from "../../../../Redux/hooks";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../../Redux/api/features/auth/authSlice";
 import DashboradButton from "./DashboradButton";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DashboardCart from "./DashboardCart";
 
 const DesktopHeader = () => {
