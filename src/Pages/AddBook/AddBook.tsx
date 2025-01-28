@@ -12,7 +12,8 @@ import { useTitle } from "../../component/hook/useTitle";
 
 //  const IHT=import.meta.env.VITE_Image_Upload_Token
 
-const apiKey = "41f7b4c771a4156d5e8f59d93a4886f2";
+// const apiKey = "41f7b4c771a4156d5e8f59d93a4886f2";
+const apiKey = "021b65195369373d0bf7e7921ee2e6c8";
 const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`;
 
 const AddBook = () => {
@@ -88,6 +89,7 @@ const AddBook = () => {
       toast.loading("Inserting Book", { id: sonarId });
       // Upload the image using Axios
       const response = await axios.post(imageHostingUrl, formData);
+      console.log("Image Upload response: ", response);
 
       if (response.data.success) {
         const imageUrl = response.data.data.display_url; // Get the image URL

@@ -7,6 +7,7 @@ import { useAppSelector } from "../../Redux/hooks";
 import { sonarId } from "../../utils/Fucntion/sonarId";
 import { TUser } from "../../utils/Types/GlobalType";
 import { useTitle } from "../../component/hook/useTitle";
+import { useState } from "react";
 
 const BookDetail = () => {
   useTitle("Book Detail");
@@ -19,7 +20,19 @@ const BookDetail = () => {
 
   const { data, isLoading } = useGetSingleBookQuery(_id);
   const book = data?.data;
-  console.log("Book: ", book);
+  //   console.log("Book: ", book);
+
+  const [quantity, setQuantity] = useState(0);
+  const handleQuantity = (value: string) => {
+    if (value == "p") {
+      setQuantity((quantity) => quantity + 1);
+    } else {
+      if (quantity === 0) {
+        return;
+      }
+      setQuantity((quantity) => quantity - 1);
+    }
+  };
 
   if (isLoading) {
     return <LoadingPage />;
@@ -30,9 +43,15 @@ const BookDetail = () => {
       toast.error("You have to logged in first", { id: sonarId });
       return;
     }
+    if (quantity == 0) {
+      toast.error("Your Quantity is 0", { id: sonarId });
+      return;
+    }
     const insertingDataIntoCart = {
       bookId: _id,
       userId: (user as TUser)._id,
+      quantity,
+      price: book?.price,
     };
     console.log("Inserting data: ", insertingDataIntoCart);
     toast.loading("Inserting Cart", { id: sonarId });
@@ -91,12 +110,31 @@ const BookDetail = () => {
 
             <div className="mt-6">
               {book?.inStock ? (
-                <button
-                  className="text-white btn btn-success"
-                  onClick={() => handleAddCart()}
-                >
-                  Buy Now
-                </button>
+                <div>
+                  <div className="flex items-center gap-x-4">
+                    <button
+                      className="btn btn-error text-white"
+                      onClick={() => handleQuantity("n")}
+                    >
+                      -
+                    </button>
+                    <button className="btn bg-white text-black hover:bg-white">
+                      {quantity}
+                    </button>
+                    <button
+                      className="btn btn-success text-white"
+                      onClick={() => handleQuantity("p")}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <button
+                    className="text-white btn btn-success my-2"
+                    onClick={() => handleAddCart()}
+                  >
+                    Buy Now
+                  </button>
+                </div>
               ) : (
                 <button className="text-white btn btn-error">
                   Out of Stock
