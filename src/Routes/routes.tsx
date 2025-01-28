@@ -21,6 +21,7 @@ import CreateAbout from "../Pages/AdminPages/CreateAbout/CreateAbout";
 import OrderManagement from "../Pages/AdminPages/OrderManagement/OrderManagement";
 import PaymentSuccessfull from "../Pages/SharedPage/Payment/PaymentSuccessfull";
 import PaymentUnSuccessfull from "../Pages/SharedPage/Payment/PaymentUnSuccessfull";
+import LoadingPage from "../component/LoadingPage/LoadingPage";
 
 export const router = createBrowserRouter([
   {
@@ -136,5 +137,9 @@ export const router = createBrowserRouter([
   {
     path: "unsuccess-pay/:transactionId",
     element: <PaymentUnSuccessfull />,
+  },
+  {
+    path: "loading",
+    element: <LoadingPage />,
   },
 ]);
