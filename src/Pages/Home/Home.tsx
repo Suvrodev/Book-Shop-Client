@@ -1,5 +1,6 @@
 import { useTitle } from "../../component/hook/useTitle";
 import Banner from "../SharedPage/Banner/Banner";
+import NewBanner from "../SharedPage/NewBanner/NewBanner";
 import HomeBook from "./HomeBook/HomeBook";
 import ImageGallery from "./ImageGallery/ImageGallery";
 import Testimonial from "./Testimonial/Testimonial";
@@ -9,7 +10,8 @@ const Home = () => {
   return (
     <div>
       <div className="">
-        <Banner />
+        {/* <Banner /> */}
+        <NewBanner />
         <ImageGallery />
         <HomeBook />
         <Testimonial />
