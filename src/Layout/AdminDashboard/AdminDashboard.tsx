@@ -21,8 +21,10 @@ const AdminDashboard = () => {
             <MenuIcon className="cursor-pointer lg:hidden text-white" />
           </label>
         </div>
-        <p className="w-[33%] text-white">This is Boundless Reads Book Shop</p>
-        <div className="w-[33%] flex justify-center ">
+        <p className="w-[33%] text-white hidden md:block">
+          This is Boundless Reads Book Shop
+        </p>
+        <div className="w-[33%] flex justify-center text-[12px] md:text-[16px] ">
           <p>{user?.email}</p>
           <span>({user?.role})</span>
         </div>
@@ -51,9 +53,7 @@ const AdminDashboard = () => {
                   <WestIcon />
                 </Link>
               </div>
-              <h1 className="text-xl font-bold text-gray-900">
-                Admin Dashboard
-              </h1>
+              <h1 className="text-xl font-bold text-white">Admin Dashboard</h1>
             </div>
 
             <div className="flex flex-col gap-4 my-4">

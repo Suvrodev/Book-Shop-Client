@@ -17,16 +17,18 @@ const UserDashboard = () => {
   return (
     <div>
       {/* Dashboard Header */}
-      <div className="text-xl font-bold text-center bg-gradient-to-r from-purple-500 to-indigo-500 py-4 px-4 flex text-white">
+      <div className=" text-xl font-bold text-center bg-gradient-to-r from-purple-500 to-indigo-500 py-4 px-4 flex text-white">
         <div className="w-[33%] flex justify-start">
           {/* Menu Icon */}
           <label className="md:hidden" htmlFor="my-drawer-2">
             <MenuIcon className="cursor-pointer lg:hidden" />
           </label>
         </div>
-        <p className="w-[33%]">This is Boundless Reads Book Shop</p>
-        <div className="w-[33%] flex justify-center">
-          <p>{user?.email}</p>
+        <p className="w-[33%] hidden md:block">
+          This is Boundless Reads Book Shop
+        </p>
+        <div className="w-[33%] flex justify-center text-[12px] md:text-[16px]">
+          <p className="">{user?.email}</p>
           <span>({user?.role})</span>
         </div>
       </div>

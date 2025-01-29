@@ -41,6 +41,15 @@ const paymentManagementApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["adminpayment", "payment"],
     }),
+    deletepaymentByAdmin: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/payment/admin/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["adminpayment", "payment"],
+    }),
     successPayment: builder.mutation({
       query: ({ id, corfirmOrder }) => {
         console.log("Redux id: ", id);
@@ -62,4 +71,5 @@ export const {
   useGetAdminOrderQuery,
   useDeletePaymentMutation,
   useSuccessPaymentMutation,
+  useDeletepaymentByAdminMutation,
 } = paymentManagementApi;

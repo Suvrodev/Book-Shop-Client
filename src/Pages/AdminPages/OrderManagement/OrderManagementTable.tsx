@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { sonarId } from "../../../utils/Fucntion/sonarId";
 // import { useAppSelector } from "../../../Redux/hooks";
 import {
-  useDeletePaymentMutation,
+  useDeletepaymentByAdminMutation,
   useSuccessPaymentMutation,
 } from "../../../Redux/api/features/Payment/paymenManagementApi";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -17,7 +17,8 @@ const OrderManagementTable = ({ data, idx }: Iprops) => {
   //   const { user } = useAppSelector((state) => state.auth);
   // console.log("User: ", user);
   //   console.log("Data: ", data);
-  const [deleteOrder] = useDeletePaymentMutation();
+  //   const [deleteOrder] = useDeletePaymentMutation();
+  const [deleteOrder] = useDeletepaymentByAdminMutation();
   const [makeUpdateOrder] = useSuccessPaymentMutation();
 
   const [adminApproval, setAdminApproval] = useState(data?.adminApproval);

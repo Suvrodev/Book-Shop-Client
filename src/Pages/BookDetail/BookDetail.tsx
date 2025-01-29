@@ -20,7 +20,7 @@ const BookDetail = () => {
 
   const { data, isLoading } = useGetSingleBookQuery(_id);
   const book = data?.data;
-  //   console.log("Book: ", book);
+  console.log("Book: ", book);
 
   const [quantity, setQuantity] = useState(0);
   const handleQuantity = (value: string) => {

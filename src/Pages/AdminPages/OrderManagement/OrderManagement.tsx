@@ -22,7 +22,7 @@ const OrderManagement = () => {
 
   return (
     <div>
-      <h1>My Order</h1>
+      <h1>Order Management by Admin</h1>
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}

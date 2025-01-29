@@ -24,10 +24,10 @@ const Login = () => {
 
   const navigate = useNavigate();
   const loc = useLocation();
-  //console.log(loc)
-  const toGo = loc.state?.from?.pathname || "/";
-  // console.log(from)
-
+  // console.log(loc)
+  // const toGo = loc.state?.from?.pathname || "/";
+  // console.log("joidergtjeoibghjeroigjoieri", toGo);
+  const toGo = "/";
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => {
     setShowPassword(!showPassword);

@@ -17,7 +17,6 @@ import MyOrder from "../Pages/MyOrder/MyOrder";
 import AdminProtectedRoute from "../Layout/AdminProtectedRoute";
 import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
 import UserManagement from "../Pages/AdminPages/UserManagement/UserManagement";
-import CreateAbout from "../Pages/AdminPages/CreateAbout/CreateAbout";
 import OrderManagement from "../Pages/AdminPages/OrderManagement/OrderManagement";
 import PaymentSuccessfull from "../Pages/SharedPage/Payment/PaymentSuccessfull";
 import PaymentUnSuccessfull from "../Pages/SharedPage/Payment/PaymentUnSuccessfull";
@@ -73,31 +72,65 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <UserDashboardHome />,
+        element: (
+          <ProtectedRoute>
+            {" "}
+            <UserDashboardHome />{" "}
+          </ProtectedRoute>
+        ),
       },
       {
         path: "user-home",
-        element: <UserDashboardHome />,
+        element: (
+          <ProtectedRoute>
+            {" "}
+            <UserDashboardHome />{" "}
+          </ProtectedRoute>
+        ),
       },
       {
         path: "user-profile",
-        element: <UserProfile />,
+        element: (
+          <ProtectedRoute>
+            {" "}
+            <UserProfile />{" "}
+          </ProtectedRoute>
+        ),
       },
       {
         path: "user-add-book",
-        element: <AddBook />,
+        element: (
+          <ProtectedRoute>
+            {" "}
+            <AddBook />{" "}
+          </ProtectedRoute>
+        ),
       },
       {
         path: "user-book",
-        element: <MyBook />,
+        element: (
+          <ProtectedRoute>
+            <MyBook />{" "}
+          </ProtectedRoute>
+        ),
       },
       {
         path: "user-cart",
-        element: <MyCart />,
+        element: (
+          <ProtectedRoute>
+            {" "}
+            <MyCart />{" "}
+          </ProtectedRoute>
+        ),
       },
       {
         path: "user-order",
-        element: <MyOrder />,
+        element: (
+          <ProtectedRoute>
+            {" "}
+            <MyOrder />{" "}
+          </ProtectedRoute>
+        ),
       },
     ],
   },
@@ -111,29 +144,53 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <AdminDashboardHome />,
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AdminDashboardHome />{" "}
+          </AdminProtectedRoute>
+        ),
       },
       {
         path: "admin-home",
-        element: <AdminDashboardHome />,
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AdminDashboardHome />,
+          </AdminProtectedRoute>
+        ),
       },
       {
         path: "user-profile",
-        element: <UserProfile />,
+        element: (
+          <AdminProtectedRoute>
+            <UserProfile />
+          </AdminProtectedRoute>
+        ),
       },
       {
         path: "user-management",
-        element: <UserManagement />,
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <UserManagement />
+          </AdminProtectedRoute>
+        ),
       },
       {
         path: "order-management",
-        element: <OrderManagement />,
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <OrderManagement />
+          </AdminProtectedRoute>
+        ),
       },
 
-      {
-        path: "create-about",
-        element: <CreateAbout />,
-      },
+      // {
+      //   path: "create-about",
+      //   element: <CreateAbout />,
+      // },
     ],
   },
   {
