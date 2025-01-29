@@ -7,6 +7,8 @@ import { Link } from "react-router";
 import { toast } from "sonner";
 import { sonarId } from "../../utils/Fucntion/sonarId";
 import { useRegistrationMutation } from "../../Redux/api/features/auth/authApi";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 const Registration = () => {
   const [addRegister] = useRegistrationMutation();
 
@@ -110,7 +112,7 @@ const Registration = () => {
                 onClick={handleShowPassword}
                 className="absolute right-10 bottom-3"
               >
-                {showPassword ? "Hide" : "Show"}
+                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
               </div>
             </div>
 
@@ -130,7 +132,11 @@ const Registration = () => {
                 onClick={handleShowPasswordConfirm}
                 className="absolute right-10 bottom-3"
               >
-                {showPasswordConfirm ? "Hide" : "Show"}
+                {showPasswordConfirm ? (
+                  <VisibilityIcon />
+                ) : (
+                  <VisibilityOffIcon />
+                )}
               </div>
             </div>
 

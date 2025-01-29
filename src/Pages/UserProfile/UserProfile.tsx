@@ -4,6 +4,8 @@ import { useChangePasswordMutation } from "../../Redux/api/features/auth/authApi
 import { toast } from "sonner";
 import { sonarId } from "../../utils/Fucntion/sonarId";
 import { useTitle } from "../../component/hook/useTitle";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const UserProfile = () => {
   useTitle("User Profile");
@@ -65,9 +67,9 @@ const UserProfile = () => {
 
               <div
                 onClick={handleShowPassword}
-                className="absolute right-10 bottom-3"
+                className="absolute right-10 bottom-3 cursor-pointer"
               >
-                {showPassword ? "Hide" : "Show"}
+                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
               </div>
             </div>
 
@@ -85,9 +87,13 @@ const UserProfile = () => {
 
               <div
                 onClick={handleShowPasswordConfirm}
-                className="absolute right-10 bottom-3"
+                className="absolute right-10 bottom-3 cursor-pointer"
               >
-                {showPasswordConfirm ? "Hide" : "Show"}
+                {showPasswordConfirm ? (
+                  <VisibilityIcon />
+                ) : (
+                  <VisibilityOffIcon />
+                )}
               </div>
             </div>
             <button className="btn btn-primary text-white">Save Change</button>

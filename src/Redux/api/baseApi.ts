@@ -44,29 +44,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<
   }
 
   if (result.error?.status === 401) {
-    console.log("Sending Refresh Token");
-    const res = await fetch("http://localhost:5000/api/v1/auth/refresh-token", {
-      method: "POST",
-      credentials: "include",
-    });
-    const data = await res.json();
-
-    if (data?.data?.accessToken) {
-      const user = (api.getState() as RootState).auth.user;
-      const newAccessToken = data?.data?.accessToken;
-      console.log("New Access Token: ", newAccessToken);
-
-      api.dispatch(
-        setUser({
-          user,
-          token: newAccessToken,
-        })
-      );
-
-      result = await baseQuery(args, api, extraOptions);
-    } else {
-      api.dispatch(logout());
-    }
+    toast.error(result?.error?.data?.message, { id: sonarId });
   }
   return result;
 };

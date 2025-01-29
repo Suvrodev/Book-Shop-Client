@@ -10,6 +10,8 @@ import { useAppDispatch } from "../../Redux/hooks";
 import { setUser } from "../../Redux/api/features/auth/authSlice";
 import { verifyToken } from "../../utils/Fucntion/verifyToken";
 import { StartFromTop } from "../../component/hook/StartFromTop";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 const Login = () => {
   const dispatch = useAppDispatch();
   const [login] = useLoginMutation();
@@ -90,9 +92,9 @@ const Login = () => {
 
               <div
                 onClick={handleShowPassword}
-                className="absolute right-10 bottom-3"
+                className="absolute right-10 bottom-3 cursor-pointer"
               >
-                {showPassword ? "Hide" : "Show"}
+                {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
               </div>
             </div>
             <div className="form-control mt-6">
