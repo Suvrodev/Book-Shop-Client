@@ -2,6 +2,7 @@ import LoadingPage from "../../../component/LoadingPage/LoadingPage";
 import { useGetBookImagesQuery } from "../../../Redux/api/features/Book/bookManagementApi";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import "./ImageGallery.css";
+import SectionTitle from "../../SharedPage/SectionTitle/SectionTitle";
 const ImageGallery = () => {
   const { data, isLoading } = useGetBookImagesQuery(undefined);
   const bookImages = data?.data;
@@ -13,7 +14,10 @@ const ImageGallery = () => {
 
   return (
     <div>
-      <h1>Image Gallery</h1>
+      <SectionTitle
+        subHeading={"Explore Our Book Images"}
+        heading={"Image Gallery"}
+      ></SectionTitle>
       <div>
         {/* <div className="" data-aos="flip-right" data-aos-duration="3000">
           <ResponsiveMasonry

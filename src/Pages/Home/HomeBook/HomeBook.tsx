@@ -3,6 +3,7 @@ import LoadingPage from "../../../component/LoadingPage/LoadingPage";
 import { useGetHomeBookQuery } from "../../../Redux/api/features/Book/bookManagementApi";
 import { TBook } from "../../../utils/Types/GlobalType";
 import BookContent from "./BookContent";
+import SectionTitle from "../../SharedPage/SectionTitle/SectionTitle";
 
 const HomeBook = () => {
   const { data, isLoading } = useGetHomeBookQuery(undefined);
@@ -14,7 +15,10 @@ const HomeBook = () => {
   }
   return (
     <div>
-      <h1>Home Book</h1>
+      <SectionTitle
+        subHeading={"Explore Our Latest Arrivals"}
+        heading={"Latest Book"}
+      ></SectionTitle>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-y-4">
         {books?.map((data: TBook, idx: number) => (
           <BookContent key={idx} book={data} />

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import TestimonialCard from "./TestimonialCard/TestimonialCard";
 import "./Testimonial.css";
+import SectionTitle from "../../SharedPage/SectionTitle/SectionTitle";
 const Testimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
   useEffect(() => {
@@ -53,7 +54,7 @@ const Testimonial = () => {
   };
   return (
     <div>
-      <h1 className="text-2xl font-bold text-white mb-10">Testimonial</h1>
+      <SectionTitle subHeading={"Explore Fan's Review"} heading={"Review"} />
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-2xl md:text-3xl font-bold text-white mb-10">
           OUR SATISFIED CUSTOMERS FEEDBACK
