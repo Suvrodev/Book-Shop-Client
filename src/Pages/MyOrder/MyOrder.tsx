@@ -18,7 +18,7 @@ const MyOrder = () => {
   const [deleteOrder] = useDeletePaymentMutation();
   const { data, isLoading } = useGetMyOrderQuery((user as TUser)?._id);
   const orders = data?.data;
-  // console.log("Orders: ", orders);
+  console.log("Orders: ", orders);
 
   const handleDelete = async (_id: string) => {
     console.log("Payment id: ", _id);
@@ -52,6 +52,7 @@ const MyOrder = () => {
               <th>Book Category</th>
               <th>Quantity</th>
               <th>Price</th>
+              <th>Transaction id</th>
               <th>Admin Approval</th>
               <th>Action</th>
             </tr>
@@ -74,7 +75,18 @@ const MyOrder = () => {
                 <td>{data?.productId?.category}</td>
                 <td>{data?.quantity}</td>
                 <td>{data?.price}</td>
-                <td>{data?.adminApproval}</td>
+                <td>{data?.transactionId}</td>
+                <td>
+                  {data?.adminApproval === "pending" ? (
+                    <p className="badge badge-secondary text-white">
+                      {data?.adminApproval}
+                    </p>
+                  ) : (
+                    <p className="badge badge-primary text-white">
+                      {data?.adminApproval}
+                    </p>
+                  )}
+                </td>
                 <td>
                   {" "}
                   <button

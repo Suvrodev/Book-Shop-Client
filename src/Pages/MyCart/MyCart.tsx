@@ -63,6 +63,7 @@ const MyCart = () => {
           </div>
         ) : (
           <div className="space-y-6">
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             {carts?.map((cartItem: any, idx: number) => (
               <div
                 key={idx}

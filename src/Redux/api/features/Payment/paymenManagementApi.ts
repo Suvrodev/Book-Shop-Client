@@ -24,10 +24,9 @@ const paymentManagementApi = baseApi.injectEndpoints({
       providesTags: ["payment"],
     }),
     getAdminOrder: builder.query({
-      query: (id: string) => {
-        // console.log("Come id: ", id);
+      query: () => {
         return {
-          url: `/cart/${id}`,
+          url: `/payment/admin/payment`,
           method: "GET",
         };
       },
@@ -42,11 +41,25 @@ const paymentManagementApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["adminpayment", "payment"],
     }),
+    successPayment: builder.mutation({
+      query: ({ id, corfirmOrder }) => {
+        console.log("Redux id: ", id);
+        console.log("Redux confirm Order: ", corfirmOrder);
+        return {
+          url: `/payment/admin/update/${id}`,
+          method: "PATCH",
+          body: corfirmOrder,
+        };
+      },
+      invalidatesTags: ["adminpayment", "payment"],
+    }),
   }),
 });
 
 export const {
   useInitialPayMutation,
   useGetMyOrderQuery,
+  useGetAdminOrderQuery,
   useDeletePaymentMutation,
+  useSuccessPaymentMutation,
 } = paymentManagementApi;
