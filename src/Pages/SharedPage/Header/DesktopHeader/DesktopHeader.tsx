@@ -47,7 +47,7 @@ const DesktopHeader = () => {
             <DashboardCart />
             <DashboradButton />
             <button
-              className=" btn btn-warning text-white "
+              className=" btn text-white btn-error "
               onClick={() => dispatch(logout())}
             >
               Logout

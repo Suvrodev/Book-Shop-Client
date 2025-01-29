@@ -19,6 +19,7 @@ const userManagementApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["book"],
     }),
     getSingleBook: builder.query({
       query: (id) => {

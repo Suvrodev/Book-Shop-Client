@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from "react-router";
-import { useAppDispatch } from "../../Redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import MenuIcon from "@mui/icons-material/Menu";
 import WestIcon from "@mui/icons-material/West";
 import { logout } from "../../Redux/api/features/auth/authSlice";
@@ -8,20 +8,24 @@ import { useTitle } from "../../component/hook/useTitle";
 
 const AdminDashboard = () => {
   useTitle("Admin Dashboard");
+  const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const location = useLocation()?.pathname;
   return (
     <div>
       {/* Dashboard Header */}
-      <div className="text-xl font-bold text-center bg-green-600 py-4 px-4 flex">
+      <div className="text-xl font-bold text-center bg-gradient-to-br from-gray-800 via-gray-900 to-black py-4 px-4 flex text-white">
         <div className="w-[33%] flex justify-start">
           {/* Menu Icon */}
           <label className="md:hidden" htmlFor="my-drawer-2">
             <MenuIcon className="cursor-pointer lg:hidden text-white" />
           </label>
         </div>
-        <p className="w-[33%] text-white">This is Suvrodeb Book-Shop</p>
-        <div className="w-[33%]"></div>
+        <p className="w-[33%] text-white">This is Boundless Reads Book Shop</p>
+        <div className="w-[33%] flex justify-center ">
+          <p>{user?.email}</p>
+          <span>({user?.role})</span>
+        </div>
       </div>
 
       {/* Start Drawer */}

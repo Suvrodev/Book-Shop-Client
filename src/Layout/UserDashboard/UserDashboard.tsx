@@ -3,14 +3,16 @@ import "./UserDashboard.css";
 import { Link, Outlet, useLocation } from "react-router";
 import { userDashboards } from "../../utils/Array/userDashboard";
 import WestIcon from "@mui/icons-material/West";
-import { useAppDispatch } from "../../Redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { logout } from "../../Redux/api/features/auth/authSlice";
 import { useTitle } from "../../component/hook/useTitle";
 
 const UserDashboard = () => {
   useTitle("User Dashboard");
+  const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const location = useLocation()?.pathname;
+
   //   console.log("Location: ", location);
   return (
     <div>
@@ -22,8 +24,11 @@ const UserDashboard = () => {
             <MenuIcon className="cursor-pointer lg:hidden" />
           </label>
         </div>
-        <p className="w-[33%]">This is Suvrodeb Book-Shop</p>
-        <div className="w-[33%]"></div>
+        <p className="w-[33%]">This is Boundless Reads Book Shop</p>
+        <div className="w-[33%] flex justify-center">
+          <p>{user?.email}</p>
+          <span>({user?.role})</span>
+        </div>
       </div>
 
       {/* Start Drawer */}

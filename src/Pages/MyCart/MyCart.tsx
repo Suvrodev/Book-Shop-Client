@@ -17,6 +17,7 @@ const MyCart = () => {
   const [initialPayment] = useInitialPayMutation();
   const { data, isLoading } = useGetMyCartQuery((user as TUser)?._id);
   const carts = data?.data;
+  console.log("My Cart: ", carts);
 
   const handleDelete = async (id: string) => {
     toast.loading("Deleting", { id: sonarId });

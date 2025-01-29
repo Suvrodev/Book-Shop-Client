@@ -12,13 +12,13 @@ const DashboradButton = () => {
         <div
           tabIndex={0}
           role="button"
-          className="btn text-white bg-slate-600 hover:bg-slate-600"
+          className="btn text-white  bg-[#19CB7C] hover:bg-slate-600 border-none"
         >
           Dashboard
         </div>
         <ul
           tabIndex={0}
-          className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+          className="dropdown-content menu  bg-green-600 rounded-box z-[1] w-52 p-2 shadow"
         >
           <li>
             <Link to={`/${role}-dashboard`}>Profile</Link>
