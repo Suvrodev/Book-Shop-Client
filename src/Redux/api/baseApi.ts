@@ -9,7 +9,6 @@ import {
 import { RootState } from "../store";
 import { toast } from "sonner";
 import { sonarId } from "../../utils/Fucntion/sonarId";
-import { logout, setUser } from "./features/auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:5000/api",
@@ -44,6 +43,9 @@ const baseQueryWithRefreshToken: BaseQueryFn<
   }
 
   if (result.error?.status === 401) {
+    toast.error(result?.error?.data?.message, { id: sonarId });
+  }
+  if (result.error?.status === 409) {
     toast.error(result?.error?.data?.message, { id: sonarId });
   }
   return result;

@@ -22,12 +22,12 @@ const OrderManagement = () => {
 
   return (
     <div>
-      <h1>Order Management by Admin</h1>
+      <h1 className="text-xl font-bold mb-4">Order Management by Admin</h1>
       <div className="overflow-x-auto">
-        <table className="table table-zebra">
+        <table className="table table-zebra border rounded-lg">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="bg-green-600 text-white">
               <th></th>
               <th>Book Image</th>
               <th>Book Name</th>

@@ -1,6 +1,8 @@
 import { useParams, Link } from "react-router";
+import { useTitle } from "../../../component/hook/useTitle";
 
 const PaymentSuccessfull = () => {
+  useTitle("Successfull Payment");
   const { transactionId } = useParams();
 
   return (

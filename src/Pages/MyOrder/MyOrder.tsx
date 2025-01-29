@@ -39,11 +39,11 @@ const MyOrder = () => {
 
   return (
     <div>
-      <h1>My Order</h1>
+      <h1 className="text-white text-xl font-bold my-4">My Order</h1>
       <div className="overflow-x-auto">
-        <table className="table table-zebra">
+        <table className="table table-zebra border">
           {/* head */}
-          <thead>
+          <thead className="bg-green-600 text-white">
             <tr>
               <th></th>
               <th>Book Image</th>

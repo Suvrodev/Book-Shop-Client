@@ -12,7 +12,9 @@ import { verifyToken } from "../../utils/Fucntion/verifyToken";
 import { StartFromTop } from "../../component/hook/StartFromTop";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { useTitle } from "../../component/hook/useTitle";
 const Login = () => {
+  useTitle("Login");
   const dispatch = useAppDispatch();
   const [login] = useLoginMutation();
   const options = {
@@ -23,7 +25,7 @@ const Login = () => {
   const { View } = useLottie(options);
 
   const navigate = useNavigate();
-  const loc = useLocation();
+  // const loc = useLocation();
   // console.log(loc)
   // const toGo = loc.state?.from?.pathname || "/";
   // console.log("joidergtjeoibghjeroigjoieri", toGo);
