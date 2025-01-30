@@ -55,11 +55,11 @@ const UserManagementRow = ({ user, idx }: IProps) => {
   };
 
   return (
-    <tr>
-      <th>{idx + 1}</th>
-      <td>{user?.name}</td>
-      <td>{user?.email}</td>
-      <td>
+    <tr className="border-b border-gray-700 hover:bg-gray-700 transition-all duration-300 ">
+      <td className="py-3 px-4">{idx + 1}</td>
+      <td className="py-3 px-4">{user?.name}</td>
+      <td className="py-3 px-4">{user?.email}</td>
+      <td className="py-3 px-4">
         <select
           onChange={handleRole}
           value={role}
@@ -69,17 +69,19 @@ const UserManagementRow = ({ user, idx }: IProps) => {
           <option value="admin">admin</option>
         </select>
       </td>
-      <td>
+      <td className="py-3 px-4">
         <select
           onChange={handleBlock}
           value={block}
-          className="outline-none py-2 px-4 rounded-md"
+          className="outline-none py-2 px-4 rounded-md bg-teal-500 text-white"
         >
-          <option value="true">Blocked</option>
+          <option value="true" className="">
+            Blocked
+          </option>
           <option value="false">Unblocked</option>
         </select>
       </td>
-      <td>
+      <td className="py-3 px-4">
         <button
           className="btn btn-sm btn-error"
           onClick={() => handleDelete(user?._id)}

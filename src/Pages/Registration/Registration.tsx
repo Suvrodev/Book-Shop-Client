@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { StartFromTop } from "../../component/hook/StartFromTop";
 import RegAnim from "../../../public/Reg_Lottie.json";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
 import { sonarId } from "../../utils/Fucntion/sonarId";
 import { useRegistrationMutation } from "../../Redux/api/features/auth/authApi";
@@ -11,7 +11,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 const Registration = () => {
   const [addRegister] = useRegistrationMutation();
-
+  const navigate = useNavigate();
   const options = {
     animationData: RegAnim,
     loop: true,
@@ -56,6 +56,7 @@ const Registration = () => {
     console.log("Res: ", res);
     if (res?.success) {
       toast.success("Registration successfully", { id: sonarId });
+      navigate("/login");
     }
   };
 
@@ -73,24 +74,24 @@ const Registration = () => {
           <form onSubmit={handleRegistration}>
             <div className="form-control  ">
               <label className="label">
-                <span className="label-text font-bold">Name</span>
+                <span className="label-text font-bold  text-white">Name</span>
               </label>
               <input
                 type="text"
                 placeholder=" Name"
-                className="input input-bordered"
+                className="input input-bordered bg-gray-700 text-white"
                 name="namee"
                 required
               />
             </div>
             <div className="form-control  my-4">
               <label className="label">
-                <span className="label-text font-bold ">Email</span>
+                <span className="label-text font-bold text-white">Email</span>
               </label>
               <input
                 type="email"
                 placeholder="email"
-                className="input input-bordered"
+                className="input input-bordered bg-gray-700 text-white"
                 name="email"
                 required
               />
@@ -98,12 +99,12 @@ const Registration = () => {
 
             <div className="form-control relative  my-4">
               <label className="label font-bold">
-                <span className="label-text">Password</span>
+                <span className="label-text  text-white">Password</span>
               </label>
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="password"
-                className="input input-bordered"
+                className="input input-bordered bg-gray-700 text-white"
                 name="password"
                 required
               />
@@ -118,12 +119,12 @@ const Registration = () => {
 
             <div className="form-control relative  my-4">
               <label className="label font-bold">
-                <span className="label-text">Confirm Password</span>
+                <span className="label-text text-white">Confirm Password</span>
               </label>
               <input
                 type={showPasswordConfirm ? "text" : "password"}
                 placeholder="password"
-                className="input input-bordered"
+                className="input input-bordered bg-gray-700 text-white"
                 name="confirmPassword"
                 required
               />

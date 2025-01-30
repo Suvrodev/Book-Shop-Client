@@ -17,17 +17,17 @@ const UserManagement = () => {
     <div className="p-4">
       <h1 className="text-xl font-bold">Show All User</h1>
 
-      <div className="overflow-x-auto">
-        <table className="table table-zebra">
+      <div className="overflow-x-auto bg-gray-800 rounded-lg shadow-lg p-0 md:p-6">
+        <table className="w-full text-sm">
           {/* head */}
           <thead>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>isBlocked</th>
-              <th>Action</th>
+            <tr className="bg-teal-500">
+              <th className="py-3 px-4 text-left"></th>
+              <th className="py-3 px-4 text-left">Name</th>
+              <th className="py-3 px-4 text-left">Email</th>
+              <th className="py-3 px-4 text-left">Role</th>
+              <th className="py-3 px-4 text-left">isBlocked</th>
+              <th className="py-3 px-4 text-left">Action</th>
             </tr>
           </thead>
           <tbody>

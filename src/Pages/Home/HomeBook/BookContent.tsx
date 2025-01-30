@@ -21,7 +21,7 @@ const BookContent = ({ book }: Iprops) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const byUser: any = book?.refUser;
   return (
-    <div className="w-full md:w-[280px] p-4 mx-auto bg-gradient-to-br from-purple-700 via-purple-600 to-purple-500 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl text-white overflow-hidden">
+    <div className="w-full md:w-[320px] p-4 mx-auto bg-gradient-to-br from-purple-700 via-purple-600 to-purple-500 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl text-white overflow-hidden">
       {/* Book Image */}
       <div className="relative mb-3 overflow-hidden rounded-lg">
         <img

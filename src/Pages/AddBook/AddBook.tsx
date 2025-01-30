@@ -121,9 +121,11 @@ const AddBook = () => {
       } else {
         console.error("Image upload failed:", response.data);
         toast.error("Something error in uploading Image", { id: sonarId });
+        toast.error("Imagebb server issue to upload image", { id: sonarId });
       }
     } catch (error) {
       console.error("Error uploading image:", error);
+      toast.error("Imagebb server issue to upload image", { id: sonarId });
     }
   };
 

@@ -45,7 +45,7 @@ const AdminDashboard = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+          <ul className="menu bg-gradient-to-b from-gray-800 to-gray-900 text-gray-200 min-h-full w-80 p-4">
             {/* Sidebar content */}
             <div className="flex gap-x-4 items-center mb-6">
               <div className="bg-white text-black p-1 rounded-full">

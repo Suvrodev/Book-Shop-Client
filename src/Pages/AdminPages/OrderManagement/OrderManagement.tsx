@@ -23,24 +23,24 @@ const OrderManagement = () => {
   return (
     <div>
       <h1 className="text-xl font-bold mb-4">Order Management by Admin</h1>
-      <div className="overflow-x-auto">
-        <table className="table table-zebra border rounded-lg">
+      <div className="overflow-x-auto bg-gray-800 rounded-lg shadow-lg p-0 md:p-6">
+        <table className="w-full text-sm">
           {/* head */}
           <thead>
-            <tr className="bg-green-600 text-white">
-              <th></th>
-              <th>Book Image</th>
-              <th>Book Name</th>
-              <th>Book Author</th>
-              <th>Book Category</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Transaction id</th>
-              <th>Date</th>
-              <th>User Name</th>
-              <th>User Email</th>
-              <th>Admin Approval</th>
-              <th>Action</th>
+            <tr className="bg-teal-500">
+              <th className="py-3 px-4 text-left">X</th>
+              <th className="py-3 px-4 text-left">Book Image</th>
+              <th className="py-3 px-4 text-left">Book Name</th>
+              <th className="py-3 px-4 text-left">Book Author</th>
+              <th className="py-3 px-4 text-left">Book Category</th>
+              <th className="py-3 px-4 text-left">Quantity</th>
+              <th className="py-3 px-4 text-left">Price</th>
+              <th className="py-3 px-4 text-left">Transaction id</th>
+              <th className="py-3 px-4 text-left">Date</th>
+              <th className="py-3 px-4 text-left">User Name</th>
+              <th className="py-3 px-4 text-left">User Email</th>
+              <th className="py-3 px-4 text-left">Admin Approval</th>
+              <th className="py-3 px-4 text-left">Action</th>
             </tr>
           </thead>
           <tbody>

@@ -97,6 +97,7 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
         }
       } catch (error) {
         console.error("Error uploading image:", error);
+        toast.error("Imagebb server issue to upload image", { id: sonarId });
       }
     } else {
       setPreviewImage(null);

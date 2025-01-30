@@ -86,7 +86,7 @@ const AllBooks = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white py-12">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-0 md:px-4">
         <h1 className="text-4xl font-extrabold text-teal-400 text-center mb-8">
           All Books
         </h1>
@@ -202,7 +202,7 @@ const AllBooks = () => {
         </div>
 
         {/* Books Table */}
-        <div className="bg-gray-800 rounded-lg shadow-lg p-6">
+        <div className=" overflow-x-auto bg-gray-800 rounded-lg shadow-lg p-0 md:p-6">
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-teal-500">
@@ -223,7 +223,7 @@ const AllBooks = () => {
               {books?.map((data: TBook, idx: number) => (
                 <tr
                   key={idx}
-                  className="border-b border-gray-700 hover:bg-gray-700 transition-all duration-300"
+                  className=" border-b border-gray-700 hover:bg-gray-700 transition-all duration-300"
                 >
                   <td className="py-3 px-4">{idx + 1}</td>
                   <td className="py-3 px-4">

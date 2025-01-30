@@ -55,12 +55,12 @@ const UserProfile = () => {
           <form action="" onSubmit={handleUpdatePassword}>
             <div className="form-control relative  my-4">
               <label className="label font-bold">
-                <span className="label-text">Old Password</span>
+                <span className="label-text text-white">Old Password</span>
               </label>
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="oldPassword"
-                className="input input-bordered"
+                className="input input-bordered bg-gray-700 text-white"
                 name="oldPassword"
                 required
               />
@@ -75,12 +75,12 @@ const UserProfile = () => {
 
             <div className="form-control relative  my-4">
               <label className="label font-bold">
-                <span className="label-text">New Password</span>
+                <span className="label-text text-white">New Password</span>
               </label>
               <input
                 type={showPasswordConfirm ? "text" : "password"}
                 placeholder="password"
-                className="input input-bordered"
+                className="input input-bordered bg-gray-700 text-white"
                 name="newPassword"
                 required
               />

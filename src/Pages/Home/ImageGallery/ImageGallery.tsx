@@ -28,7 +28,7 @@ const ImageGallery = () => {
         subHeading={"Explore Our Latest Book Image"}
         heading={"Image Gallery"}
       />
-      <div className="container mx-auto p-4">
+      <div className="">
         {/* Image Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {bookImages?.map((image: { imageUrl: string }, index: number) => (

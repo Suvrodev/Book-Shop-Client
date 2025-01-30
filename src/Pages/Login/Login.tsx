@@ -69,25 +69,25 @@ const Login = () => {
           <form onSubmit={handleLogin}>
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-bold">Email</span>
+                <span className="label-text font-bold text-white">Email</span>
               </label>
               <input
                 type="email"
                 placeholder="email"
-                className="input input-bordered"
+                className="input input-bordered bg-gray-700 text-white"
                 name="email"
                 required
               />
             </div>
 
-            <div className="form-control relative">
+            <div className="form-control relative text-white">
               <label className="label font-bold">
-                <span className="label-text">Password</span>
+                <span className="label-text text-white">Password</span>
               </label>
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="password"
-                className="input input-bordered"
+                className="input input-bordered bg-gray-700 text-white"
                 name="password"
                 required
               />

@@ -50,32 +50,35 @@ const OrderManagementTable = ({ data, idx }: Iprops) => {
   };
 
   return (
-    <tr key={idx}>
-      <th>{idx + 1}</th>
-      <td>
+    <tr
+      key={idx}
+      className="border-b border-gray-700 hover:bg-gray-700 transition-all duration-300 "
+    >
+      <td className="py-3 px-4">{idx + 1}</td>
+      <td className="py-3 px-4">
         {" "}
         <img
           src={data?.productId?.imageUrl}
-          className="w-[65px] h-[80px] rounded-md"
+          className="w-[75px] h-[60px] rounded-md"
           alt=""
         />
       </td>
-      <td>{data?.productId?.title}</td>
-      <td>{data?.productId?.author}</td>
-      <td>{data?.productId?.category}</td>
-      <td>{data?.quantity}</td>
-      <td>{data?.price}</td>
-      <td>{data?.transactionId}</td>
-      <td>{formatDate(data?.createdAt)}</td>
-      <td>{data?.userId?.name}</td>
-      <td>{data?.userId?.email}</td>
-      <td>
+      <td className="py-3 px-4">{data?.productId?.title}</td>
+      <td className="py-3 px-4">{data?.productId?.author}</td>
+      <td className="py-3 px-4">{data?.productId?.category}</td>
+      <td className="py-3 px-4">{data?.quantity}</td>
+      <td className="py-3 px-4">{data?.price}</td>
+      <td className="py-3 px-4">{data?.transactionId}</td>
+      <td className="py-3 px-4">{formatDate(data?.createdAt)}</td>
+      <td className="py-3 px-4">{data?.userId?.name}</td>
+      <td className="py-3 px-4">{data?.userId?.email}</td>
+      <td className="py-3 px-4">
         <select
           name=""
           id=""
           value={adminApproval}
           onChange={handleAdminApproval}
-          className="border border-green-500 p-2 rounded-md"
+          className=" bg-teal-500 text-white p-2 rounded-md"
         >
           <option value="confirm"> confirm </option>
           <option value="pending"> pending </option>

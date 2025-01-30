@@ -10,6 +10,7 @@ import { sonarId } from "../../utils/Fucntion/sonarId";
 import UpdateBook from "../UpdateBook/UpdateBook";
 import { TBook } from "../../utils/Types/GlobalType";
 import { useTitle } from "../../component/hook/useTitle";
+import BlankPage from "../../component/BlankPage/BlankPage";
 const MyBook = () => {
   useTitle("My Book");
   const [deleteBook] = useDeleteBookMutation();
@@ -30,47 +31,53 @@ const MyBook = () => {
   if (isLoading) {
     return <LoadingPage />;
   }
+  if (books?.length === 0) {
+    return <BlankPage data=" You didn't Add any book " />;
+  }
   return (
     <div>
       <h1 className="text-xl font-bold">My Uploaded Book List</h1>
       <div>
-        <div className="overflow-x-auto">
-          <table className="table table-zebra">
+        <div className="overflow-x-auto bg-gray-800 rounded-lg shadow-lg p-0 md:p-6">
+          <table className="w-full text-sm">
             {/* head */}
-            <thead>
-              <tr>
-                <th>Image</th>
-                <th>Title</th>
-                <th>Brand</th>
-                <th>Author</th>
-                <th>Category</th>
-                <th>Model</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Available</th>
-                <th>Update</th>
-                <th>Delete</th>
+            <thead className=" ">
+              <tr className="bg-teal-500">
+                <th className="py-3 px-4 text-left">Image</th>
+                <th className="py-3 px-4 text-left">Title</th>
+                <th className="py-3 px-4 text-left">Brand</th>
+                <th className="py-3 px-4 text-left">Author</th>
+                <th className="py-3 px-4 text-left">Category</th>
+                <th className="py-3 px-4 text-left">Model</th>
+                <th className="py-3 px-4 text-left">Price</th>
+                <th className="py-3 px-4 text-left">Quantity</th>
+                <th className="py-3 px-4 text-left">Available</th>
+                <th className="py-3 px-4 text-left">Update</th>
+                <th className="py-3 px-4 text-left">Delete</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="">
               {books?.map((data: TBook, idx: number) => (
-                <tr key={idx}>
-                  <th>
+                <tr
+                  key={idx}
+                  className="border-b border-gray-700 hover:bg-gray-700 transition-all duration-300  "
+                >
+                  <td className="py-3 px-4">
                     {" "}
                     <img
                       src={data?.imageUrl}
                       alt=""
                       className="w-[65px] h-[40px]"
                     />{" "}
-                  </th>
-                  <td>{data?.title}</td>
-                  <td>{data?.brand}</td>
-                  <td>{data?.author}</td>
-                  <td>{data?.category}</td>
-                  <td>{data?.model}</td>
-                  <td>{data?.price}</td>
-                  <td>{data?.quantity}</td>
-                  <td>{data?.inStock ? "Yes" : "No"}</td>
+                  </td>
+                  <td className="py-3 px-4">{data?.title}</td>
+                  <td className="py-3 px-4">{data?.brand}</td>
+                  <td className="py-3 px-4">{data?.author}</td>
+                  <td className="py-3 px-4">{data?.category}</td>
+                  <td className="py-3 px-4">{data?.model}</td>
+                  <td className="py-3 px-4">{data?.price}</td>
+                  <td className="py-3 px-4">{data?.quantity}</td>
+                  <td className="py-3 px-4">{data?.inStock ? "Yes" : "No"}</td>
                   <td>
                     <button className="btn btn-sm btn-success text-white">
                       <UpdateBook bookInfo={data} />

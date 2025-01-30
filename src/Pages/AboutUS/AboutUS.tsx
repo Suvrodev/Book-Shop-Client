@@ -122,7 +122,7 @@ const AboutUS = () => {
     //     </div>
     //   </div>
     // </div>
-    <div className="bg-gradient-to-b from-purple-600 to-purple-800 min-h-screen flex items-center justify-center">
+    <div className="bg-gradient-to-b  min-h-screen flex items-center justify-center">
       <div className="max-w-4xl mx-auto bg-white shadow-2xl rounded-3xl overflow-hidden">
         {/* Header Section */}
 
