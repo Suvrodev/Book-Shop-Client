@@ -13,9 +13,10 @@ const userManagementApi = baseApi.injectEndpoints({
       invalidatesTags: ["book"],
     }),
     getAllBook: builder.query({
-      query: () => {
+      query: (params) => {
+        const queryString = new URLSearchParams(params).toString();
         return {
-          url: "/products",
+          url: `/products?${queryString}`,
           method: "GET",
         };
       },
