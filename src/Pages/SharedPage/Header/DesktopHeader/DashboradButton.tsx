@@ -3,9 +3,9 @@ import { useAppSelector } from "../../../../Redux/hooks";
 
 const DashboradButton = () => {
   const { user } = useAppSelector((state) => state.auth);
-  console.log("User: ", user);
+  // console.log("User: ", user);
   const role = user?.role;
-  console.log("Role: ", role);
+  // console.log("Role: ", role);
   return (
     <div>
       <div className="dropdown ">

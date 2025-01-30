@@ -10,7 +10,7 @@ interface IProps {
 const ProtectedRoute = ({ children }: IProps) => {
   const { token } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
-  console.log("Token in protected Route: ", token);
+  // console.log("Token in protected Route: ", token);
   const location = useLocation();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let user: any;

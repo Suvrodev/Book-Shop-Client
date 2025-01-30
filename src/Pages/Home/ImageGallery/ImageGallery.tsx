@@ -6,7 +6,7 @@ import { useState } from "react";
 const ImageGallery = () => {
   const { data, isLoading } = useGetBookImagesQuery(undefined);
   const bookImages = data?.data;
-  console.log("Image: ", bookImages);
+  // console.log("Image: ", bookImages);
 
   const [selectedImage, setSelectedImage] = useState(null);
 
