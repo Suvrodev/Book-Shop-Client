@@ -18,9 +18,9 @@ const AllBooks = () => {
   const [minPrice, setMinPrice] = useState<string>("");
   const [maxPrice, setMaxPrice] = useState<string>("");
   const [inStock, setInStock] = useState<string>("");
-  const [sortBy, setSortBy] = useState<string>(""); // State for sorting
-  const [sortOrder, setSortOrder] = useState<string>(""); // State for ascending/descending sorting
-  const [currentPage, setCurrentPage] = useState<number>(1); // Current page state
+  const [sortBy, setSortBy] = useState<string>("");
+  const [sortOrder, setSortOrder] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   // Fetch books with filters and pagination
   const {
@@ -30,16 +30,17 @@ const AllBooks = () => {
   } = useGetAllBookQuery(
     Object.fromEntries(
       Object.entries({
-        ...(searchTerm && { searchTerm }), // Include only if searchTerm has a value
-        ...(category && { category }), // Include only if category has a value
-        ...(author && { author }), // Include only if author has a value
-        ...(minPrice && { minPrice: String(minPrice) }), // Include only if minPrice has a value
-        ...(maxPrice && { maxPrice: String(maxPrice) }), // Include only if maxPrice has a value
-        ...(inStock !== "" && { inStock: String(inStock) }), // Include only if inStock has a value
-        ...(sortBy && { sortBy }), // Include sortBy if set
-        ...(sortOrder && { sortOrder }), // Include sortOrder if set
-        page: currentPage, // Page parameter to control pagination
-        limit: 5, // Limit per page
+        ...(searchTerm && { searchTerm }),
+        ...(category && { category }),
+        ...(author && { author }),
+        ...(minPrice && { minPrice: String(minPrice) }),
+        ...(maxPrice && { maxPrice: String(maxPrice) }),
+        ...(inStock !== "" && { inStock: String(inStock) }),
+        ...(sortBy && { sortBy }),
+        ...(sortOrder && { sortOrder }),
+        page: currentPage,
+        limit: 5,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       }).filter(([_, v]) => v !== undefined) // Filter out undefined values
     )
   );
@@ -50,7 +51,7 @@ const AllBooks = () => {
   }
 
   const books = bookData?.data || [];
-  const totalPages = bookData?.pagination?.totalPages || 1; // Assuming API returns totalPages info
+  const totalPages = bookData?.pagination?.totalPages || 1;
 
   // Handle search/filter changes
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

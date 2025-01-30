@@ -17,7 +17,7 @@ const HomeBook = () => {
     <div>
       <SectionTitle
         subHeading={"Explore Our Latest Arrivals"}
-        heading={"Latest Book"}
+        heading={"Featured Book"}
       />
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-y-4">
         {books?.map((data: TBook, idx: number) => (

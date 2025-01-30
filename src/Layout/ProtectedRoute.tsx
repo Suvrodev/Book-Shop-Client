@@ -26,20 +26,12 @@ const ProtectedRoute = ({ children }: IProps) => {
 
   if (!token) {
     return (
-      <Navigate
-        to={"/login"}
-        state={{ from: location }}
-        replace={true}
-      ></Navigate>
+      <Navigate to={"/"} state={{ from: location }} replace={true}></Navigate>
     );
   }
   if (user?.role !== "user") {
     return (
-      <Navigate
-        to={"/login"}
-        state={{ from: location }}
-        replace={true}
-      ></Navigate>
+      <Navigate to={"/"} state={{ from: location }} replace={true}></Navigate>
     );
   }
   return children;

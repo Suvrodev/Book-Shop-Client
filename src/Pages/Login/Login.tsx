@@ -1,6 +1,6 @@
 import { useLottie } from "lottie-react";
 import LoginAnim from "../../../public/Login_Lottie.json";
-import { Link, useLocation, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { FormEvent, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLoginMutation } from "../../Redux/api/features/auth/authApi";

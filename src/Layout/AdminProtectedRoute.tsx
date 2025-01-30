@@ -29,20 +29,12 @@ const AdminProtectedRoute = ({ children }: IProps) => {
 
   if (!token) {
     return (
-      <Navigate
-        to={"/login"}
-        state={{ from: location }}
-        replace={true}
-      ></Navigate>
+      <Navigate to={"/"} state={{ from: location }} replace={true}></Navigate>
     );
   }
   if (user?.role !== "admin") {
     return (
-      <Navigate
-        to={"/login"}
-        state={{ from: location }}
-        replace={true}
-      ></Navigate>
+      <Navigate to={"/"} state={{ from: location }} replace={true}></Navigate>
     );
   }
   return children;

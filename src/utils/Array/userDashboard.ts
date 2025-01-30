@@ -16,7 +16,7 @@ export const userDashboards = [
     path: "/user-dashboard/user-book",
   },
   {
-    text: "My Cart",
+    text: "Checkout",
     path: "/user-dashboard/user-cart",
   },
   {

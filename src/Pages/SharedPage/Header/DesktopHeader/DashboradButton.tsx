@@ -18,7 +18,7 @@ const DashboradButton = () => {
         </div>
         <ul
           tabIndex={0}
-          className="dropdown-content menu  bg-green-600 rounded-box z-[1] w-52 p-2 shadow"
+          className="dropdown-content menu  bg-green-600 rounded-md z-[1] w-32 p-0 shadow"
         >
           <li>
             <Link to={`/${role}-dashboard`}>Profile</Link>

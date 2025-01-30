@@ -10,6 +10,7 @@ import { useAppSelector } from "../../Redux/hooks";
 import { TUser } from "../../utils/Types/GlobalType";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { sonarId } from "../../utils/Fucntion/sonarId";
+import { formatDate } from "../../utils/Fucntion/convertDate";
 
 const MyOrder = () => {
   useTitle("My Order");
@@ -53,6 +54,7 @@ const MyOrder = () => {
               <th>Quantity</th>
               <th>Price</th>
               <th>Transaction id</th>
+              <th>Date</th>
               <th>Admin Approval</th>
               <th>Action</th>
             </tr>
@@ -76,6 +78,7 @@ const MyOrder = () => {
                 <td>{data?.quantity}</td>
                 <td>{data?.price}</td>
                 <td>{data?.transactionId}</td>
+                <td>{formatDate(data?.createdAt)}</td>
                 <td>
                   {data?.adminApproval === "pending" ? (
                     <p className="badge badge-secondary text-white">

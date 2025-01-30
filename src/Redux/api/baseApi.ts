@@ -11,7 +11,8 @@ import { toast } from "sonner";
 import { sonarId } from "../../utils/Fucntion/sonarId";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:5000/api",
+  // baseUrl: "http://localhost:5000/api",
+  baseUrl: "https://book-shop-server-blue.vercel.app/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -28,7 +29,8 @@ const baseQueryWithRefreshToken: BaseQueryFn<
   DefinitionType
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 > = async (args, api, extraOptions): Promise<any> => {
-  let result = await baseQuery(args, api, extraOptions);
+  // eslint-disable-next-line prefer-const, @typescript-eslint/no-explicit-any
+  let result: any = await baseQuery(args, api, extraOptions);
   console.log("In Custom Base Query: ", result);
 
   if (result?.error?.status === 404 || result?.error?.status === 403) {

@@ -7,6 +7,7 @@ import {
 } from "../../../Redux/api/features/Payment/paymenManagementApi";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { toast } from "sonner";
+import { formatDate } from "../../../utils/Fucntion/convertDate";
 
 interface Iprops {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -64,9 +65,10 @@ const OrderManagementTable = ({ data, idx }: Iprops) => {
       <td>{data?.productId?.category}</td>
       <td>{data?.quantity}</td>
       <td>{data?.price}</td>
+      <td>{data?.transactionId}</td>
+      <td>{formatDate(data?.createdAt)}</td>
       <td>{data?.userId?.name}</td>
       <td>{data?.userId?.email}</td>
-      <td>{data?.transactionId}</td>
       <td>
         <select
           name=""

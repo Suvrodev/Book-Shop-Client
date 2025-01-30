@@ -57,7 +57,9 @@ const MyCart = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-500 to-purple-900 text-white py-12">
       <div className="container mx-auto px-4">
-        <h1 className="text-4xl font-bold text-center mb-12">🛒 My Cart</h1>
+        <h1 className="text-4xl font-bold text-center mb-12">
+          🛒 Checkout Cart
+        </h1>
         {carts?.length === 0 ? (
           <div className="text-center">
             <p className="text-2xl font-bold">Your cart is empty!</p>

@@ -36,6 +36,7 @@ const OrderManagement = () => {
               <th>Quantity</th>
               <th>Price</th>
               <th>Transaction id</th>
+              <th>Date</th>
               <th>User Name</th>
               <th>User Email</th>
               <th>Admin Approval</th>
