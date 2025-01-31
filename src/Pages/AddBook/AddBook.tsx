@@ -10,12 +10,8 @@ import bookImage from "../../assets/Images/Camera_2.jpg";
 import CreateIcon from "@mui/icons-material/Create";
 import { useTitle } from "../../component/hook/useTitle";
 
-//  const IHT=import.meta.env.VITE_Image_Upload_Token
-
-// const apiKey = "41f7b4c771a4156d5e8f59d93a4886f2";
-// const apiKey = "021b65195369373d0bf7e7921ee2e6c8";
-const apiKey = "befb283c5e2628aae2f618798ce6840d";
-const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`;
+const imageHostingUrl =
+  "https://api.cloudinary.com/v1_1/dixfkupof/image/upload";
 
 const AddBook = () => {
   useTitle("Add Book");
@@ -84,17 +80,24 @@ const AddBook = () => {
 
     // Create FormData and append the file
     const formData = new FormData();
-    formData.append("image", fileInput);
+    formData.append("file", fileInput);
+    formData.append("upload_preset", "suvrodeb");
+    formData.append("cloud_name", "dixfkupof");
+    console.log("Selected File:", fileInput);
 
     try {
       toast.loading("Inserting Book", { id: sonarId });
       // Upload the image using Axios
-      const response = await axios.post(imageHostingUrl, formData);
-      console.log("Image Upload response: ", response);
+      // const response = await axios.post(imageHostingUrl, formData);
 
-      if (response.data.success) {
-        const imageUrl = response.data.data.display_url; // Get the image URL
-        // console.log("Image uploaded successfully:", imageUrl);
+      // console.log("Image Upload response: ", response);
+      const imageResponse = await axios.post(imageHostingUrl, formData);
+
+      // console.log("Uploaded image URL:", res?.data?.url);
+
+      if (imageResponse?.data?.url) {
+        const imageUrl = imageResponse?.data?.url; // Get the image URL
+        console.log("Image uploaded successfully:", imageUrl);
         // toast.success("Image Upload successfully", { id: sonarId });
 
         ///Send Data in Back end
@@ -119,7 +122,7 @@ const AddBook = () => {
           toast.success(res?.message, { id: sonarId });
         }
       } else {
-        console.error("Image upload failed:", response.data);
+        console.error("Image upload failed:", imageResponse);
         toast.error("Something error in uploading Image", { id: sonarId });
         toast.error("Imagebb server issue to upload image", { id: sonarId });
       }

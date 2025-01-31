@@ -9,8 +9,9 @@ import axios from "axios";
 import { bookCategories } from "../../utils/Array/BookCategory";
 import bookImage from "../../assets/Images/bookk.jpg";
 import { TBook } from "../../utils/Types/GlobalType";
-const apiKey = "41f7b4c771a4156d5e8f59d93a4886f2";
-const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`;
+
+const imageHostingUrl =
+  "https://api.cloudinary.com/v1_1/dixfkupof/image/upload";
 import CreateIcon from "@mui/icons-material/Create";
 
 interface Iprops {
@@ -76,13 +77,15 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
       setPreviewImage(imageUrl);
       console.log("In Here Image url-----: ", imageUrl);
       const formData = new FormData();
-      formData.append("image", file);
+      formData.append("file", file);
+      formData.append("upload_preset", "suvrodeb");
+      formData.append("cloud_name", "dixfkupof");
       try {
         toast.loading("Uploading Image", { id: sonarId });
         const response = await axios.post(imageHostingUrl, formData);
 
-        if (response.data.success) {
-          const imageUrl = response.data.data.display_url;
+        if (response.data.url) {
+          const imageUrl = response.data.url;
           console.log("New Image Linkkkkkkk: ", imageUrl);
           toast.success("Image Uploaded", { id: sonarId });
           const updateData = { imageUrl: imageUrl };

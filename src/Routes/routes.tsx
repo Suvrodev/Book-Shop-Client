@@ -217,4 +217,8 @@ export const router = createBrowserRouter([
     path: "loading",
     element: <LoadingPage />,
   },
+  // {
+  //   path: "imageupload",
+  //   element: <UploadImage />,
+  // },
 ]);

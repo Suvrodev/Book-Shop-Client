@@ -19,7 +19,7 @@ const DesktopHeader = () => {
           </Link>
           <p className="font-bold text-xl">Boundless Reads</p>
         </div>
-        <div className="flex justify-center  gap-4 font-bold w-[50%] ">
+        <div className="flex justify-center  gap-4 w-[50%] ">
           <NavLink
             className={({ isActive }) => (isActive ? "text-blue-500" : "acLk ")}
             to="/home"
