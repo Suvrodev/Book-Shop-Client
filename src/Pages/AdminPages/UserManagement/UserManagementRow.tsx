@@ -63,7 +63,7 @@ const UserManagementRow = ({ user, idx }: IProps) => {
         <select
           onChange={handleRole}
           value={role}
-          className="outline-none py-2 px-4 rounded-md"
+          className="outline-none py-2 px-4 rounded-md bg-green-600"
         >
           <option value="user">user</option>
           <option value="admin">admin</option>

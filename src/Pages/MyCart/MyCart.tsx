@@ -70,7 +70,7 @@ const MyCart = () => {
             {carts?.map((cartItem: any, idx: number) => (
               <div
                 key={idx}
-                className="bg-white/10 p-6 rounded-lg shadow-lg flex items-center gap-6"
+                className=" bg-white/10 p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center gap-6"
               >
                 <div className="w-32 h-48">
                   <img
