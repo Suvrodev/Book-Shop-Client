@@ -1,9 +1,9 @@
 import LoadingPage from "../../component/LoadingPage/LoadingPage";
 import {
   useDeleteBookMutation,
-  useGetOwnBookQuery,
+  useGetAllBookByAdminQuery,
 } from "../../Redux/api/features/Book/bookManagementApi";
-import { useAppSelector } from "../../Redux/hooks";
+// import { useAppSelector } from "../../Redux/hooks";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { toast } from "sonner";
 import { sonarId } from "../../utils/Fucntion/sonarId";
@@ -14,9 +14,9 @@ import BlankPage from "../../component/BlankPage/BlankPage";
 const MyBook = () => {
   useTitle("My Book");
   const [deleteBook] = useDeleteBookMutation();
-  const { user } = useAppSelector((state) => state.auth);
+  // const { user } = useAppSelector((state) => state.auth);
   // console.log("User From My Book: ", user);
-  const { data, isLoading } = useGetOwnBookQuery(user?._id);
+  const { data, isLoading } = useGetAllBookByAdminQuery(undefined);
   const books = data?.data;
   // console.log("Books: ", books);
 

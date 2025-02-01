@@ -27,6 +27,24 @@ const AdminDashboardHome = () => {
             <p>View and update your admin profile information.</p>
           </Link>
 
+          {/* Add Book Card */}
+          <Link
+            to="/user-dashboard/user-add-book"
+            className="bg-white/10 p-6 rounded-lg shadow-lg hover:shadow-2xl transition transform hover:scale-105"
+          >
+            <h2 className="text-2xl font-bold mb-3">📚 Add Book</h2>
+            <p>Add new books to your collection or inventory.</p>
+          </Link>
+
+          {/* My Book Card */}
+          <Link
+            to="/user-dashboard/user-book"
+            className="bg-white/10 p-6 rounded-lg shadow-lg hover:shadow-2xl transition transform hover:scale-105"
+          >
+            <h2 className="text-2xl font-bold mb-3">📖 Books Management</h2>
+            <p>View and manage books </p>
+          </Link>
+
           {/* User Management */}
           <Link
             to="user-management"

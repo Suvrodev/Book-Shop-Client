@@ -19,7 +19,7 @@ const AdminProtectedRoute = ({ children }: IProps) => {
   if (token) {
     user = verifyToken(token);
   }
-  //   console.log("Token User: ", user);
+  // console.log("Token User: ", user);
 
   useEffect(() => {
     if (!token || user?.role !== "admin") {
@@ -29,12 +29,20 @@ const AdminProtectedRoute = ({ children }: IProps) => {
 
   if (!token) {
     return (
-      <Navigate to={"/"} state={{ from: location }} replace={true}></Navigate>
+      <Navigate
+        to={"/login"}
+        state={{ from: location }}
+        replace={true}
+      ></Navigate>
     );
   }
   if (user?.role !== "admin") {
     return (
-      <Navigate to={"/"} state={{ from: location }} replace={true}></Navigate>
+      <Navigate
+        to={"/login"}
+        state={{ from: location }}
+        replace={true}
+      ></Navigate>
     );
   }
   return children;

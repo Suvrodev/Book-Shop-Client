@@ -75,7 +75,7 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setPreviewImage(imageUrl);
-      console.log("In Here Image url-----: ", imageUrl);
+      console.log("In Here Image url------: ", imageUrl);
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", "suvrodeb");
@@ -163,7 +163,7 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
         onCancel={handleCancel}
         footer={null}
       >
-        <div className="form-container">
+        <div className="form-container ">
           <h2 className="form-title">Update Book</h2>
           {/* Show the selected image */}
           <div className="image-preview mb-4 flex justify-center">
@@ -203,7 +203,7 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
                   type="text"
                   name="titlee"
                   defaultValue={title}
-                  className="text-white"
+                  className="bg-white text-black"
                   required
                 />
               </div>
@@ -214,7 +214,7 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
                   type="text"
                   name="author"
                   defaultValue={author}
-                  className="text-white"
+                  className="bg-white text-black"
                   required
                 />
               </div>
@@ -227,7 +227,7 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
                   type="text"
                   name="brand"
                   defaultValue={brand}
-                  className="text-white"
+                  className="bg-white text-black"
                   required
                 />
               </div>
@@ -238,7 +238,7 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
                   type="text"
                   name="model"
                   defaultValue={model}
-                  className="text-white"
+                  className="bg-white text-black"
                   required
                 />
               </div>
@@ -252,7 +252,7 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
                   name="price"
                   defaultValue={price}
                   required
-                  className="removeDefaultIcon text-white"
+                  className="removeDefaultIcon bg-white text-black"
                 />
               </div>
 
@@ -262,7 +262,7 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
                   name="category"
                   value={category}
                   onChange={handleCategory}
-                  className="text-white"
+                  className="bg-white text-black"
                   required
                 >
                   <option value="" disabled>
@@ -294,7 +294,7 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
                 name="description"
                 rows={4}
                 defaultValue={description}
-                className="text-white"
+                className="bg-white text-black "
                 required
               />
             </div>
@@ -305,7 +305,7 @@ const UpdateBook = ({ bookInfo }: Iprops) => {
                 type="number"
                 name="quantity"
                 defaultValue={quantity}
-                className="removeDefaultIcon text-white"
+                className="removeDefaultIcon bg-white text-black"
                 required
               />
             </div>

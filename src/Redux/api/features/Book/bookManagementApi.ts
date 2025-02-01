@@ -10,7 +10,16 @@ const userManagementApi = baseApi.injectEndpoints({
           body: data,
         };
       },
-      invalidatesTags: ["book"],
+      invalidatesTags: ["book", "bookHome", "bookImage"],
+    }),
+    getAllBookByAdmin: builder.query({
+      query: () => {
+        return {
+          url: `/products/admin/getbook`,
+          method: "GET",
+        };
+      },
+      providesTags: ["book"],
     }),
     getAllBook: builder.query({
       query: (params) => {
@@ -46,6 +55,7 @@ const userManagementApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["bookImage"],
     }),
     getHomeBook: builder.query({
       query: () => {
@@ -54,7 +64,7 @@ const userManagementApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: ["book"],
+      providesTags: ["bookHome"],
     }),
     deleteBook: builder.mutation({
       query: (id) => {
@@ -63,7 +73,7 @@ const userManagementApi = baseApi.injectEndpoints({
           method: "DELETE",
         };
       },
-      invalidatesTags: ["book"],
+      invalidatesTags: ["book", "bookHome", "bookImage"],
     }),
     updateBook: builder.mutation({
       query: ({ id, updateData }) => {
@@ -73,7 +83,7 @@ const userManagementApi = baseApi.injectEndpoints({
           body: updateData,
         };
       },
-      invalidatesTags: ["book"],
+      invalidatesTags: ["book", "bookHome", "bookImage"],
     }),
   }),
 });
@@ -87,4 +97,5 @@ export const {
   useUpdateBookMutation,
   useGetBookImagesQuery,
   useGetHomeBookQuery,
+  useGetAllBookByAdminQuery,
 } = userManagementApi;

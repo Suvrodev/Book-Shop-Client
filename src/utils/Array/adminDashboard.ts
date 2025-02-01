@@ -8,6 +8,14 @@ export const adminDashboards = [
     path: "/admin-dashboard/user-profile",
   },
   {
+    text: "Add Book",
+    path: "/admin-dashboard/admin-add-book",
+  },
+  {
+    text: "Book Management",
+    path: "/admin-dashboard/book-management",
+  },
+  {
     text: "User Management",
     path: "/admin-dashboard/user-management",
   },

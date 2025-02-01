@@ -16,7 +16,7 @@ const DashboardCart = () => {
   return (
     <div>
       {user?.role == "user" && (
-        <div className=" p-5 text-white relative ">
+        <div className=" p-5 text-white relative hidden ">
           <Link to={"/user-dashboard/user-cart"}>
             {" "}
             <AddShoppingCartIcon />

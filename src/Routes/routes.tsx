@@ -23,6 +23,7 @@ import PaymentUnSuccessfull from "../Pages/SharedPage/Payment/PaymentUnSuccessfu
 import LoadingPage from "../component/LoadingPage/LoadingPage";
 import UserDashboardHome from "../Layout/UserDashboard/UserDashboardHome";
 import AdminDashboardHome from "../Layout/AdminDashboard/AdminDashboardHome";
+import CheckOutPage from "../Pages/CheckOutPage/CheckOutPage";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,15 @@ export const router = createBrowserRouter([
       {
         path: "about-us",
         element: <AboutUS />,
+      },
+      {
+        path: "user-checkout/:_id",
+        element: (
+          <ProtectedRoute>
+            {" "}
+            <CheckOutPage />{" "}
+          </ProtectedRoute>
+        ),
       },
 
       {
@@ -88,6 +98,7 @@ export const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+
       {
         path: "user-profile",
         element: (
@@ -97,23 +108,7 @@ export const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
-      {
-        path: "user-add-book",
-        element: (
-          <ProtectedRoute>
-            {" "}
-            <AddBook />{" "}
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: "user-book",
-        element: (
-          <ProtectedRoute>
-            <MyBook />{" "}
-          </ProtectedRoute>
-        ),
-      },
+
       {
         path: "user-cart",
         element: (
@@ -165,6 +160,24 @@ export const router = createBrowserRouter([
         element: (
           <AdminProtectedRoute>
             <UserProfile />
+          </AdminProtectedRoute>
+        ),
+      },
+
+      {
+        path: "admin-add-book",
+        element: (
+          <AdminProtectedRoute>
+            {" "}
+            <AddBook />{" "}
+          </AdminProtectedRoute>
+        ),
+      },
+      {
+        path: "book-management",
+        element: (
+          <AdminProtectedRoute>
+            <MyBook />{" "}
           </AdminProtectedRoute>
         ),
       },

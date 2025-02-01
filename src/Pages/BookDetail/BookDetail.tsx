@@ -1,171 +1,131 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useGetSingleBookQuery } from "../../Redux/api/features/Book/bookManagementApi";
 import LoadingPage from "../../component/LoadingPage/LoadingPage";
-import { useAddCartMutation } from "../../Redux/api/features/Cart/cartManagementApi";
+// import { useAddCartMutation } from "../../Redux/api/features/Cart/cartManagementApi";
 import { toast } from "sonner";
 import { useAppSelector } from "../../Redux/hooks";
 import { sonarId } from "../../utils/Fucntion/sonarId";
-import { TUser } from "../../utils/Types/GlobalType";
 import { useTitle } from "../../component/hook/useTitle";
-import { useState } from "react";
 
 const BookDetail = () => {
   useTitle("Book Detail");
-  const [addCart] = useAddCartMutation();
 
   const { user } = useAppSelector((state) => state.auth);
 
-  const { _id } = useParams(); // Correctly access _id
+  const { _id } = useParams();
   //   console.log("The book ID is: ", _id);
 
   const { data, isLoading } = useGetSingleBookQuery(_id);
   const book = data?.data;
   console.log("Book: ", book);
 
-  const [quantity, setQuantity] = useState(0);
-  const handleQuantity = (value: string) => {
-    if (value == "p") {
-      setQuantity((quantity) => quantity + 1);
-    } else {
-      if (quantity === 0) {
-        return;
-      }
-      setQuantity((quantity) => quantity - 1);
-    }
-  };
+  const navigate = useNavigate();
 
   if (isLoading) {
     return <LoadingPage />;
   }
 
-  const handleAddCart = async () => {
+  const handleOrder = async () => {
     if (!user) {
       toast.error("You have to logged in first", { id: sonarId });
       return;
     }
-    if (quantity == 0) {
-      toast.error("Your Quantity is 0", { id: sonarId });
+    if (user && user?.role === "admin") {
+      toast.error("You can to order as admin", { id: sonarId });
       return;
     }
-    const insertingDataIntoCart = {
-      bookId: _id,
-      userId: (user as TUser)._id,
-      quantity,
-      price: book?.price,
-    };
-    console.log("Inserting data: ", insertingDataIntoCart);
-    toast.loading("Inserting Cart", { id: sonarId });
 
-    const res = await addCart(insertingDataIntoCart).unwrap();
-    if (res.success) {
-      toast.success(res?.message, { id: sonarId });
-    }
+    // naviagate(`/user-checkout/${_id}`);
+    navigate(`/user-checkout/${_id}`);
   };
   return (
     <div>
-      <div className="container mx-auto px-4 py-12 bg-gradient-to-r from-purple-500 via-indigo-600 to-blue-700 text-white rounded-xl shadow-xl">
-        <div className="flex flex-col md:flex-row items-center space-x-8">
-          {/* Book Image Section */}
-          <div className="flex-shrink-0">
-            <img
-              src={book?.imageUrl} // Replace with actual book image URL
-              alt="Book Cover"
-              className="rounded-lg shadow-lg w-64 h-96 object-cover"
-            />
-          </div>
-
-          {/* Book Information Section */}
-          <div className="flex-1 space-y-6">
-            <h1 className="text-5xl font-extrabold text-white">
-              {book?.title}
-            </h1>
-            <h2 className="text-2xl font-semibold text-gray-200">
-              {book?.category}
-            </h2>
-            <p className="text-lg text-gray-300">{book?.description}</p>
-
-            <div className="flex items-center space-x-6 text-xl">
-              <span className="text-green-400 font-bold">
-                ${book?.price.toFixed(2)}
-              </span>
-              <span
-                className={`text-lg font-semibold ${
-                  book?.inStock ? "text-green-500" : "text-red-500"
-                }`}
-              >
-                {book?.inStock ? "In Stock" : "Out of Stock"}
+      <h1 className="bg-[#5C3485] p-4 mb-2 rounded-md font-bold text-center text-xl">
+        Book Detail
+      </h1>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-800 to-blue-900 text-white flex justify-center items-center px-6 py-12">
+        <div className="max-w-5xl w-full bg-white bg-opacity-10 backdrop-blur-lg p-10 rounded-2xl shadow-2xl border border-white/20">
+          {/* Flex Container */}
+          <div className="flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-10">
+            {/* Book Image */}
+            <div className="w-64 h-96 relative">
+              <img
+                src={book?.imageUrl}
+                alt={book?.title}
+                className="w-full h-full object-cover rounded-lg shadow-lg border-4 border-white/20"
+              />
+              <span className="absolute top-2 left-2 bg-blue-600 px-3 py-1 text-xs font-bold rounded-full shadow-md">
+                {book?.category}
               </span>
             </div>
 
-            <div className="flex items-center space-x-6 text-lg">
-              <div>
-                <span className="font-semibold text-gray-200">Author: </span>
-                <span className="text-gray-300">{book?.author}</span>
-              </div>
-              <div>
-                <span className="font-semibold text-gray-200">Brand: </span>
-                <span className="text-gray-300">{book?.brand}</span>
-              </div>
-            </div>
+            {/* Book Details */}
+            <div className="flex-1">
+              <h1 className="text-4xl font-extrabold">{book?.title}</h1>
+              <p className="text-lg text-gray-300 mt-2">{book?.description}</p>
 
-            <div className="mt-6">
-              {book?.inStock ? (
+              {/* Price & Stock */}
+              <div className="mt-4 flex items-center space-x-6">
+                <span className="text-2xl font-bold text-green-400">
+                  ${book?.price?.toFixed(2)}
+                </span>
+                <span
+                  className={`text-lg font-semibold px-3 py-1 rounded-lg ${
+                    book?.inStock ? "bg-green-500" : "bg-red-500"
+                  }`}
+                >
+                  {book?.inStock ? "In Stock" : "Out of Stock"}
+                </span>
+              </div>
+
+              {/* Additional Info */}
+              <div className="mt-6 grid grid-cols-2 gap-4">
                 <div>
-                  <div className="flex items-center gap-x-4">
-                    <button
-                      className="btn btn-error text-white"
-                      onClick={() => handleQuantity("n")}
-                    >
-                      -
-                    </button>
-                    <button className="btn bg-white text-black hover:bg-white">
-                      {quantity}
-                    </button>
-                    <button
-                      className="btn btn-success text-white"
-                      onClick={() => handleQuantity("p")}
-                    >
-                      +
-                    </button>
-                  </div>
-                  <button
-                    className="text-white btn btn-success my-2"
-                    onClick={() => handleAddCart()}
-                  >
-                    Buy Now
-                  </button>
+                  <span className="font-semibold text-gray-200">Author:</span>
+                  <p className="text-gray-300">{book?.author}</p>
                 </div>
-              ) : (
-                <button className="text-white btn btn-error">
-                  Out of Stock
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
+                <div>
+                  <span className="font-semibold text-gray-200">Brand:</span>
+                  <p className="text-gray-300">{book?.brand}</p>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-200">Model:</span>
+                  <p className="text-gray-300">{book?.model}</p>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-200">
+                    Quantity Available:
+                  </span>
+                  <p className="text-gray-300">{book?.quantity}</p>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-200">
+                    Published:
+                  </span>
+                  <p className="text-gray-300">
+                    {new Date(book?.createdAt).toLocaleDateString()}
+                  </p>
+                </div>
+              </div>
 
-        <div className="mt-10 space-y-4">
-          <h3 className="text-3xl font-semibold text-gray-100">
-            More Information
-          </h3>
-          <div className="space-y-3">
-            <div>
-              <span className="font-semibold text-gray-200">Model: </span>
-              <span className="text-gray-300">{book?.model}</span>
-            </div>
-            <div>
-              <span className="font-semibold text-gray-200">
-                Quantity Available:{" "}
-              </span>
-              <span className="text-gray-300">{book?.quantity}</span>
-            </div>
-            <div>
-              <span className="font-semibold text-gray-200">
-                Published On:{" "}
-              </span>
-              <span className="text-gray-300">
-                {new Date(book?.createdAt).toLocaleDateString()}
-              </span>
+              {/* Order Button */}
+              <div className="mt-6">
+                {book?.inStock ? (
+                  <button
+                    className="px-6 py-3 text-lg font-semibold text-white bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 transition duration-300"
+                    onClick={handleOrder}
+                  >
+                    Order Now
+                  </button>
+                ) : (
+                  <button
+                    className="px-6 py-3 text-lg font-semibold text-white bg-gray-600 rounded-lg shadow-md cursor-not-allowed"
+                    disabled
+                  >
+                    Out of Stock
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>

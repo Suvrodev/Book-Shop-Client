@@ -31,7 +31,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<
 > = async (args, api, extraOptions): Promise<any> => {
   // eslint-disable-next-line prefer-const, @typescript-eslint/no-explicit-any
   let result: any = await baseQuery(args, api, extraOptions);
-  // console.log("In Custom Base Query: ", result);
+  console.log("In Custom Base Query: ", result);
 
   if (result?.error?.status === 404 || result?.error?.status === 403) {
     toast.error(result?.error?.data?.message, { id: sonarId });
@@ -56,6 +56,15 @@ const baseQueryWithRefreshToken: BaseQueryFn<
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQueryWithRefreshToken,
-  tagTypes: ["cart", "book", "user", "about", "payment", "adminpayment"],
+  tagTypes: [
+    "cart",
+    "book",
+    "user",
+    "about",
+    "payment",
+    "adminpayment",
+    "bookImage",
+    "bookHome",
+  ],
   endpoints: () => ({}),
 });
